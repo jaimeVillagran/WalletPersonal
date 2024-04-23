@@ -1,3 +1,6 @@
+import java.util.Currency; // Add the missing import statement
+import com.example.wallet.Wallet; // Add the missing import statement
+
 public class Menu {
   private User user;
   private String sc;
@@ -12,9 +15,11 @@ public class Menu {
 
   // Metodos
   public void display() {
-    // Seleccion de moneda
+    // ...
+
     Currency chosenCurrency = selectCurrency();
 
+    // Create a Wallet instance with the selected currency and the current user
     // Crear una cuenta Wallet con la moneda seleccionada y el usuario actual.
     Wallet wallet = new Wallet(user, chosenCurrency);
     user.addAccount(wallet);
@@ -26,7 +31,7 @@ public class Menu {
       System.out.println("3. Consultar saldo");
       System.out.println("4. Salir");
       System.out.print("Seleccione una opción: ");
-      int option = sc.nextInt();
+      int option = Integer.parseInt(sc);
       sc.nextLine(); // Limpiar el búfer de entrada
 
       switch (option) {
@@ -42,12 +47,8 @@ public class Menu {
           // Operación de retiro
           System.out.print("Ingrese monto a retirar: ");
           double withdrawAmount = sc.nextDouble();
-          boolean success = wallet.withdraw(withdrawAmount);
-          if (success) {
-            System.out.println("Retiro realizado.");
-          } else {
-            System.out.println("Fondos insuficientes.");
-          }
+          wallet.withdraw(withdrawAmount);
+          System.out.println("Retiro realizado.");
           break;
 
         case 3:
@@ -58,8 +59,7 @@ public class Menu {
           System.out.println("3. Euros (EUR)");
           System.out.println("4. Libras esterlinas (GBP)");
           System.out.print("Seleccione una opción: ");
-          int currencyOption = sc.nextInt();
-
+          int currencyOption = Integer.parseInt(sc);
           // Consultar saldo y convertir si es necesario
           double balanceInPredeterminedCurrency = wallet.getBalance();
           double convertedBalance;
@@ -69,11 +69,26 @@ public class Menu {
               // Mostrar saldo en moneda predeterminada
               System.out.println("Saldo actual: " + balanceInPredeterminedCurrency + chosenCurrency.getSymbol());
               break;
-            case 2:
-              // Convertir saldo a USD$ y mostrar
-              convertedBalance = balanceInPredeterminedCurrency / chosenCurrency.getExchangeRate();
-              System.out.println("Saldo actual: " + String.format("%.2f", convertedBalance) + " USD$");
-              break;
+              class Currency {
+                private String symbol;
+                private double exchangeRate;
+
+                // Constructor
+                public Currency(String symbol, double exchangeRate) {
+                  this.symbol = symbol;
+                  this.exchangeRate = exchangeRate;
+                }
+
+                // Getter for exchangeRate
+                public double getExchangeRate() {
+                  return exchangeRate;
+                }
+
+                // Getter for symbol
+                public String getSymbol() {
+                  return symbol;
+                }
+              }
             case 3:
               // Convertir saldo a EUR y mostrar
               convertedBalance = balanceInPredeterminedCurrency / chosenCurrency.getExchangeRate();
