@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class User {
     private String name;
@@ -7,15 +8,17 @@ public class User {
     private String password;
     private List<Wallet> accounts;
 
+    // Constructor
     public User(String name, String apellido, String email, String password) {
         this.name = name;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
-        this.accounts = new List<Wallet>();
+        this.accounts = new ArrayList<>();
     }
 
-    public String getName() {
+    // Métodos para obtener los atributos del usuario
+    public String getNombre() {
         return name;
     }
 
@@ -23,45 +26,40 @@ public class User {
         return apellido;
     }
 
-    public String getEmail() {
+    public String getMail() {
         return email;
     }
 
-    // Metodo para verificar la contrasenya
+    // Método para verificar la contraseña
     public boolean checkPassword(String inputPassword) {
         return password.equals(inputPassword);
     }
 
-    // Metodo para agrear una cuenta
-    public void addAccount(Wallet account) {
-        accounts.add(account);
+    // Método para agregar una cuenta (Wallet) al usuario
+    public void addAccount(Wallet wallet) {
+        accounts.add(wallet);
     }
 
-    // Metodo para selecionar una cuenta (Wllet) por indice
+    // Método para seleccionar una cuenta (Wallet) por índice
     public Wallet selectAccount(int index) {
         if (index < 0 || index >= accounts.size()) {
-            return null;
+            throw new IllegalArgumentException("Índice de cuenta inválido");
         }
         return accounts.get(index);
     }
-    // Metodo para obtener la lista de cuentas (Wallet)
 
+    // Método para obtener la lista de cuentas (Wallets)
     public List<Wallet> getAccounts() {
         return accounts;
     }
 
     // Método para dar la bienvenida al usuario por nombre y apellido
-
-    public String welcomeMessage() {
-        return "Bienvenido " + name + " " + apellido;
+    public void welcomeUser() {
+        System.out.println("¡Bienvenido, " + name + " " + apellido + "!");
     }
 
-    public Wallet selectAccount() {
-        return accounts.get(0);
+    // Método para cerrar la sesión del usuario
+    public void exitUser() {
+        System.out.println("Hasta pronto, " + name + " " + apellido + "!");
     }
-
-    public boolean checkPassword(String inputPassword) {
-        return password.equals(inputPassword);
-    }
-
 }
