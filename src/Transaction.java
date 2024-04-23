@@ -2,10 +2,10 @@ import java.time.LocalDateTime;
 
 public class Transaction {
     private final String type;
-    private double amount;
-    private LocalDateTime date;
-    private String description;
-    private double balanceAfter;
+    private final double amount;
+    private final LocalDateTime date;
+    private final String description;
+    private final double balanceAfter;
 
 
     public Transaction(String type, double amount, String description, double balanceAfter) {
