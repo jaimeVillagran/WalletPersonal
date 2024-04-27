@@ -1,14 +1,18 @@
+import java.util.Scanner;
+import currencyManager.CurrencyManager;
+
 public class OperationsMenu {
   private User user;
-  private Wallet wallet;
-  private CurrencyManager currencyManager;
-  private Scanner scanner;
 
-  public OperationsMenu(User user, Wallet wallet, CurrencyManager currencyManager, Scanner scanner) {
+  private currencyManager.currency Wallet wallet;
+  private CurrencyManager currencyManager;
+  private Scanner sc;
+
+  public OperationsMenu(User user, Wallet wallet, CurrencyManager currencyManager, Scanner sc) {
     this.user = user;
     this.wallet = wallet;
     this.currencyManager = currencyManager;
-    this.scanner = scanner;
+    this.sc = sc;
   }
 
   public void showMenu() {

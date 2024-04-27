@@ -1,32 +1,10 @@
-public enum Currency {
+public interface Currency {
+  double getExchangeRate(); // Obtiene el tipo de cambio a CLP
 
-  // Enumeración de las monedas
-  EUR("Euro", "EUR", "€"),
-  CLP("Peso Chile", "CLP", "$"),
-  GBP("Libra esterlina", "GBP", "£"),
-  USD("Dólar estadounidense", "USD", "USD$");
+  String getCurrencyCode(); // Obtiene el código de la moneda (USD, EUR, GBP, CLP)
 
-  private final String name;
-  private final String denomination;
-  private final String symbol;
+  String getDenomination(); // Obtiene la denominación de la moneda (USD, EUR, GBP, CLP)
 
-  // Constructor
-  Currency(String name, String denomination, String symbol) {
-    this.name = name;
-    this.denomination = denomination;
-    this.symbol = symbol;
-  }
+  String getSymbol(); // Obtiene el símbolo de la moneda ($, €, £, USD$)
 
-  // Métodos para obtener la información de la moneda
-  public String getName() {
-    return name;
-  }
-
-  public String getDenomination() {
-    return denomination;
-  }
-
-  public String getSymbol() {
-    return symbol;
-  }
 }
