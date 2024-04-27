@@ -1,4 +1,4 @@
-public class GBP extends Currency {
+public class GBP implements Currency {
   public double getExchangeRate() {
     return 1200.0; // 1 GBP = 1200 CLP
   }

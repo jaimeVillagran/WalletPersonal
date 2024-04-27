@@ -1,7 +1,4 @@
 import java.util.Scanner;
-import com.example.wallet.*;
-import currencyManager;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

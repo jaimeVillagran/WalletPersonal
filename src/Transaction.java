@@ -1,26 +1,13 @@
 import java.time.LocalDateTime;
 
-public class Transaction {
-    private final String type;
-    private final double amount;
-    private final LocalDateTime date;
-
-    public Transaction(String type, double amount) {
-        this.type = type;
-        this.amount = amount;
-        this.date = LocalDateTime.now();
-    }
+public interface Transaction {
 
     // Métodos para obtener los atributos de la transacción
-    public String getType() {
-        return type;
-    }
+    String getType();
 
-    public double getAmount() {
-        return amount;
-    }
+    double getAmount();
 
-    public LocalDateTime getDate() {
-        return date;
-    }
+    LocalDateTime getDate();
+
+    String getDesciptio(); // Agregamos un nuevo método que retorna una descripción
 }

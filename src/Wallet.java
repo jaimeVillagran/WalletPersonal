@@ -1,11 +1,19 @@
+import Currency;
 
 public abstract class Wallet {
+  private final Currency chosenCurr = Currency.getInstance("CLP"); // Moneda seleccionada por el usuario
   protected double balanceCLP; // Saldo en pesos chilenos (CLP)
   protected CurrencyManager currencyManager; // Manejo de monedas
 
   public Wallet(CurrencyManager currencyManager) {
     this.balanceCLP = 0;
     this.currencyManager = currencyManager;
+  }
+
+  public Wallet(User user, Currency chosenCurrency) {
+    this.balanceCLP = 0;
+    this.currencyManager = new CurrencyManager();
+    this.currencyManager.addCurrency(Currency);
   }
 
   public abstract void deposit(double amount); // Método abstracto para depósito en CLP

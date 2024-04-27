@@ -1,133 +1,81 @@
-import java.util.Currency; // Add the missing import statement
-import com.example.wallet.Wallet; // Add the missing import statement
+import java.util.Scanner;
 
 public class Menu {
-  private User user;
-  private String sc;
+    private Scanner sc;
+    private User user;
+    private double exchangeRate;
 
-  // Constructor
-  public Menu(User user, String sc) {
-    this.user = user;
-    this.sc = sc;
-  }
-
-  // Add this closing brace to complete the class body
-
-  // Metodos
-  public void display() {
-    // ...
-
-    Currency chosenCurrency = selectCurrency();
-
-    // Create a Wallet instance with the selected currency and the current user
-    // Crear una cuenta Wallet con la moneda seleccionada y el usuario actual.
-    Wallet wallet = new Wallet(user, chosenCurrency);
-    user.addAccount(wallet);
-
-    while (true) {
-      System.out.println("\nMenú:");
-      System.out.println("1. Depositar");
-      System.out.println("2. Retirar");
-      System.out.println("3. Consultar saldo");
-      System.out.println("4. Salir");
-      System.out.print("Seleccione una opción: ");
-      int option = Integer.parseInt(sc);
-      sc.nextLine(); // Limpiar el búfer de entrada
-
-      switch (option) {
-        case 1:
-          // Operación de depósito
-          System.out.print("Ingrese monto a depositar: ");
-          double depositAmount = sc.nextDouble();
-          wallet.deposit(depositAmount);
-          System.out.println("Depósito realizado.");
-          break;
-
-        case 2:
-          // Operación de retiro
-          System.out.print("Ingrese monto a retirar: ");
-          double withdrawAmount = sc.nextDouble();
-          wallet.withdraw(withdrawAmount);
-          System.out.println("Retiro realizado.");
-          break;
-
-        case 3:
-          // Operación de consulta de saldo
-          System.out.println("Elija cómo desea ver su saldo:");
-          System.out.println("1. Moneda predeterminada (" + chosenCurrency.getSymbol() + ")");
-          System.out.println("2. Dólares estadounidenses (USD$)");
-          System.out.println("3. Euros (EUR)");
-          System.out.println("4. Libras esterlinas (GBP)");
-          System.out.print("Seleccione una opción: ");
-          int currencyOption = Integer.parseInt(sc);
-          // Consultar saldo y convertir si es necesario
-          double balanceInPredeterminedCurrency = wallet.getBalance();
-          double convertedBalance;
-
-          switch (currencyOption) {
-            case 1:
-              // Mostrar saldo en moneda predeterminada
-              System.out.println("Saldo actual: " + balanceInPredeterminedCurrency + chosenCurrency.getSymbol());
-              break;
-              class Currency {
-                private String symbol;
-                private double exchangeRate;
-
-                // Constructor
-                public Currency(String symbol, double exchangeRate) {
-                  this.symbol = symbol;
-                  this.exchangeRate = exchangeRate;
-                }
-
-                // Getter for exchangeRate
-                public double getExchangeRate() {
-                  return exchangeRate;
-                }
-
-                // Getter for symbol
-                public String getSymbol() {
-                  return symbol;
-                }
-              }
-            case 3:
-              // Convertir saldo a EUR y mostrar
-              convertedBalance = balanceInPredeterminedCurrency / chosenCurrency.getExchangeRate();
-              System.out.println("Saldo actual: " + String.format("%.2f", convertedBalance) + " EUR");
-              break;
-            case 4:
-              // Convertir saldo a GBP y mostrar
-              convertedBalance = balanceInPredeterminedCurrency / chosenCurrency.getExchangeRate();
-              System.out.println("Saldo actual: " + String.format("%.2f", convertedBalance) + " GBP");
-              break;
-
-          }
-
-      }
+    public Menu(User user, double exchangeRate) {
+        this.sc = new Scanner(System.in);
+        this.user = user;
+        this.exchangeRate = exchangeRate;
     }
-  }
 
-  private Currency selectCurrency() {
-    System.out.println("Seleccione una moneda para su cuenta:");
-    System.out.println("1. Peso chileno (CLP)");
-    System.out.println("2. Dólar estadounidense (USD)");
-    System.out.println("3. Euro (EUR)");
-    System.out.println("4. Libra esterlina (GBP)");
-    System.out.print("Seleccione una opción: ");
-    int currencyOption = sc.nextInt();
-    sc.nextLine(); // Limpiar el búfer de entrada
+    public void displayMenu() {
+        while (true) {
+            System.out.println("****************");
+            System.out.println("\nMenú:");
+            System.out.println("1. Depositar");
+            System.out.println("2. Retirar");
+            System.out.println("3. Consultar saldo");
+            System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
+            int option = sc.nextInt();
 
-    switch (currencyOption) {
-      case 1:
-        return Currency.CLP;
-      case 2:
-        return Currency.USD;
-      case 3:
-        return Currency.EUR;
-      case 4:
-        return Currency.GBP;
-      default:
-        System.out.println("Opción inválida. Seleccionando moneda predeterminada (CLP).");
-        return Currency.CLP;
+            switch (option) {
+                case 1:
+                    deposit();
+                    break;
+                case 2:
+                    withdraw();
+                    break;
+                case 3:
+                    checkBalance();
+                    break;
+                case 4:
+                    System.out.println("Saliendo...");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Opción inválida.");
+                    break;
+            }
+        }
     }
-  }
+
+    private void deposit() {
+        System.out.println("****************");
+        System.out.print("Ingrese monto a depositar: ");
+        double depositAmount = sc.nextDouble();
+        user.getWallet().deposit(depositAmount);
+    }
+
+    private void withdraw() {
+        System.out.println("****************");
+        System.out.print("Ingrese monto a retirar: ");
+        double withdrawAmount = sc.nextDouble();
+        user.getWallet().withdraw(withdrawAmount);
+    }
+
+    private void checkBalance() {
+        System.out.println("Elija cómo desea ver su saldo:");
+        System.out.println("1. Moneda original (CLP)");
+        System.out.println("2. Dólares (USD)");
+        System.out.print("Seleccione una opción: ");
+        int currencyOption = sc.nextInt();
+
+        if (currencyOption == 1) {
+            // Mostrar saldo en moneda original
+            System.out.println("****************");
+            user.getWallet().checkBalance();
+        } else if (currencyOption == 2) {
+            // Convertir saldo a dólares y mostrar
+            double balanceInCLP = user.getWallet().getBalance();
+            double balanceInUSD = balanceInCLP / exchangeRate;
+            System.out.println("****************");
+            System.out.println("Saldo actual en dólares: USD " + String.format("%.2f", balanceInUSD));
+        } else {
+            System.out.println("Opción inválida.");
+        }
+    }
 }
