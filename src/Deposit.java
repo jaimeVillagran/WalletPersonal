@@ -67,10 +67,4 @@ public class Deposit implements Transaction {
         // Retorna la descripción con el formato ajustado
         return String.format("%s de CLP %.2f el %s", getType(), amount, formattedDateTime);
     }
-
-    @Override
-    public String getDesciptio() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDesciptio'");
-    }
 }

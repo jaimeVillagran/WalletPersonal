@@ -9,5 +9,5 @@ public interface Transaction {
 
     LocalDateTime getDate();
 
-    String getDesciptio(); // Agregamos un nuevo método que retorna una descripción
+    String getDescription(); // Agregamos un nuevo método que retorna una descripción
 }
