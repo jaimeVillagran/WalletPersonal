@@ -17,8 +17,8 @@ public class Main {
             return;
         }
 
-        // Obtener usuario autenticado
-        User predefinedUser = auth.getPredefinedUser();
+        // Define the getPredefinedUser() method in the Authentication class
+        User predefinedUser = auth.getPredefinedUser(); // Get the predefinedUser
 
         // Definir tipo de cambio
         double exchangeRate = 950.0; // CLP por USD

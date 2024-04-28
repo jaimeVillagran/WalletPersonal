@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Authentication {
-  private User predefinedUser, user;
+  private User predefinedUser;
   private Scanner sc;
 
   public Authentication() {
@@ -35,5 +35,9 @@ public class Authentication {
 
   public void closeScanner() {
     sc.close();
+  }
+
+  public User getPredefinedUser() {
+    return predefinedUser;
   }
 }
