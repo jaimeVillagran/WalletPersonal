@@ -26,15 +26,15 @@ public class Authentication {
       } else {
         attempts++;
         if (attempts < 3) {
-          System.out.println("**********************************************");
-          System.out.println("Datos ingreadas. son incorrectas. Intente nuevamente.");
-          System.out.println("**********************************************");
+          System.out.println("*********************************************************");
+          System.out.println("* Las credenciales son incorrectas. Intente nuevamente. *");
+          System.out.println("*********************************************************");
         }
       }
     }
-    System.out.println("**********************************************");
-    System.out.println("Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde.");
-    System.out.println("**********************************************");
+    System.out.println("******************************************************************************");
+    System.out.println("* Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde. *");
+    System.out.println("******************************************************************************");
     return false;
   }
 

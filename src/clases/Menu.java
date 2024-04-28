@@ -21,6 +21,7 @@ public class Menu {
             System.out.println("2. Retirar");
             System.out.println("3. Consultar saldo");
             System.out.println("4. Salir");
+            System.out.println("************************");
             System.out.print("Seleccione una opción: ");
             int option = sc.nextInt();
 
