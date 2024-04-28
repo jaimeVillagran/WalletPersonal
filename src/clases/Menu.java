@@ -15,7 +15,7 @@ public class Menu {
 
     public void displayMenu() {
         while (true) {
-            System.out.println("****************");
+            System.out.println("************************");
             System.out.println("\nMenú:");
             System.out.println("1. Depositar");
             System.out.println("2. Retirar");
@@ -46,23 +46,23 @@ public class Menu {
     }
 
     private void deposit() {
-        System.out.println("****************");
+        System.out.println("************************");
         System.out.print("Ingrese monto a depositar: ");
         double depositAmount = sc.nextDouble();
         user.getWallet().deposit(depositAmount);
     }
 
     private void withdraw() {
-        System.out.println("****************");
+        System.out.println("************************");
         System.out.print("Ingrese monto a retirar: ");
         double withdrawAmount = sc.nextDouble();
         user.getWallet().withdraw(withdrawAmount);
     }
 
     private void checkBalance() {
-        System.out.println("************************");
+        System.out.println("********************************");
         System.out.println("* Elija cómo desea ver su saldo: *");
-        System.out.println("************************");
+        System.out.println("********************************");
         System.out.println("1. Moneda original (CLP)");
         System.out.println("2. Dólares (USD)");
         System.out.print("Seleccione una opción: ");
@@ -78,6 +78,7 @@ public class Menu {
             double balanceInUSD = balanceInCLP / exchangeRate;
             System.out.println("********************************");
             System.out.println("Saldo actual en dólares: USD " + String.format("%.2f", balanceInUSD));
+            System.out.println("********************************");
         } else {
             System.out.println("Opción inválida.");
         }

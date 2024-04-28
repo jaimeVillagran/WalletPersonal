@@ -64,7 +64,7 @@ public class Withdrawal implements Transaction {
     @Override
     public String getDescription() {
         // Define el formato de fecha y hora deseado
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' 'T'HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm");
         // Formatea la fecha y hora según el formato deseado
         String formattedDateTime = date.format(formatter);
         // Retorna la descripción con el formato ajustado
