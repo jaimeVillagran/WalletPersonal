@@ -13,6 +13,7 @@ public class Authentication {
   public boolean authenticate() {
     int attempts = 0;
     while (attempts < 3) {
+      System.out.println("=================");
       System.out.println("Ingrese su nombre de usuario:");
       String inputName = sc.nextLine();
       System.out.println("Ingrese su contraseña:");
@@ -30,8 +31,6 @@ public class Authentication {
     }
     System.out.println("Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde.");
     return false;
-  }
-
   }
 
   public void closeScanner() {
