@@ -1,6 +1,7 @@
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Wallet {
+public class Wallet {
   private double balance;
   private final List<Transaction> transactions;
 
