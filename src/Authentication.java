@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
 public class Authentication {
-  private User user;
+  private User predefinedUser, user;
   private Scanner sc;
 
   public Authentication() {
-    this.sc =  new Scanner(System.in);
-    this.predefinedUser = new User("Jaime", "jaime1234");;
+    this.sc = new Scanner(System.in);
+    this.predefinedUser = new User("Jaime", "jaime1234");
+    ;
   }
 
   public boolean authenticate() {
@@ -16,7 +17,6 @@ public class Authentication {
       String inputName = sc.nextLine();
       System.out.println("Ingrese su contraseña:");
       String inputPassword = sc.nextLine();
-
 
       if (predefinedUser.getName().equals(inputName) && predefinedUser.checkPassword(inputPassword)) {
         System.out.println("¡Bienvenido, " + predefinedUser.getName() + "!");
@@ -28,11 +28,12 @@ public class Authentication {
         }
       }
     }
-System.out.println("Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde.");
+    System.out.println("Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde.");
     return false;
-    }
+  }
 
   }
+
   public void closeScanner() {
     sc.close();
   }
