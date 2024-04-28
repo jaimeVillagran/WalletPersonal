@@ -1,10 +1,16 @@
+package App;
+
 import java.util.Scanner;
+
+import clases.Authentication;
+import clases.Menu;
+import clases.User;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("****************");
+        System.out.println("**********************************************");
         System.out.println("* Bienvenido a la billetera Wallet Personal *");
-        System.out.println("****************");
+        System.out.println("**********************************************");
 
         // Crear una instancia de Authentication
         Authentication auth = new Authentication();

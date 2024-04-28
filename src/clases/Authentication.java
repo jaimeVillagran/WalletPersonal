@@ -1,3 +1,5 @@
+package clases;
+
 import java.util.Scanner;
 
 public class Authentication {
@@ -13,7 +15,6 @@ public class Authentication {
   public boolean authenticate() {
     int attempts = 0;
     while (attempts < 3) {
-      System.out.println("=================");
       System.out.println("Ingrese su nombre de usuario:");
       String inputName = sc.nextLine();
       System.out.println("Ingrese su contraseña:");
@@ -25,11 +26,15 @@ public class Authentication {
       } else {
         attempts++;
         if (attempts < 3) {
-          System.out.println("Nombre de usuario o contraseña incorrectos. Intento " + attempts + " de 3.");
+          System.out.println("**********************************************");
+          System.out.println("Datos ingreadas. son incorrectas. Intente nuevamente.");
+          System.out.println("**********************************************");
         }
       }
     }
+    System.out.println("**********************************************");
     System.out.println("Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde.");
+    System.out.println("**********************************************");
     return false;
   }
 

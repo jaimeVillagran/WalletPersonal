@@ -1,3 +1,5 @@
+package clases;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -58,7 +60,9 @@ public class Menu {
     }
 
     private void checkBalance() {
-        System.out.println("Elija cómo desea ver su saldo:");
+        System.out.println("************************");
+        System.out.println("* Elija cómo desea ver su saldo: *");
+        System.out.println("************************");
         System.out.println("1. Moneda original (CLP)");
         System.out.println("2. Dólares (USD)");
         System.out.print("Seleccione una opción: ");
@@ -66,13 +70,13 @@ public class Menu {
 
         if (currencyOption == 1) {
             // Mostrar saldo en moneda original
-            System.out.println("****************");
+            System.out.println("********************************");
             user.getWallet().checkBalance();
         } else if (currencyOption == 2) {
             // Convertir saldo a dólares y mostrar
             double balanceInCLP = user.getWallet().getBalance();
             double balanceInUSD = balanceInCLP / exchangeRate;
-            System.out.println("****************");
+            System.out.println("********************************");
             System.out.println("Saldo actual en dólares: USD " + String.format("%.2f", balanceInUSD));
         } else {
             System.out.println("Opción inválida.");

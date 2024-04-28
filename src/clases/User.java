@@ -1,3 +1,5 @@
+package clases;
+
 public class User {
     private String name;
     private String password;

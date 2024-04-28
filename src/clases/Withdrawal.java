@@ -1,9 +1,13 @@
+package clases;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * La clase Withdrawal implementa la interfaz Transaction y representa un retiro.
- * Contiene métodos para obtener detalles sobre el retiro como el tipo, la cantidad, la fecha y la descripción.
+ * La clase Withdrawal implementa la interfaz Transaction y representa un
+ * retiro.
+ * Contiene métodos para obtener detalles sobre el retiro como el tipo, la
+ * cantidad, la fecha y la descripción.
  */
 public class Withdrawal implements Transaction {
     private double amount;
