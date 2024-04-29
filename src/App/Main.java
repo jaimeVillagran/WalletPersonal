@@ -2,10 +2,10 @@ package App;
 
 import java.util.Scanner;
 
-import clases.Authentication;
-import clases.Menu;
-import clases.User;
-import clases.Wallet;
+import Authentication.Authentication;
+import User.User;
+import User.Wallet;
+import menu.Menu;
 
 public class Main {
     public static void main(String[] args) {

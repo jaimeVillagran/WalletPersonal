@@ -1,6 +1,8 @@
-package clases;
+package menu;
 
 import java.util.Scanner;
+
+import User.User;
 
 public class Menu {
     private Scanner sc;

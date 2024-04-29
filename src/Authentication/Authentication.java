@@ -1,6 +1,8 @@
-package clases;
+package Authentication;
 
 import java.util.Scanner;
+
+import User.User;
 
 public class Authentication {
   private User predefinedUser;

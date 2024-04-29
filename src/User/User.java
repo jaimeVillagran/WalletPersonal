@@ -1,4 +1,4 @@
-package clases;
+package User;
 
 public class User {
     private String name;

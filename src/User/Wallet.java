@@ -1,7 +1,11 @@
-package clases;
+package User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import transactions.Deposit;
+import transactions.Transaction;
+import transactions.Withdrawal;
 
 public class Wallet {
   private double balance;
