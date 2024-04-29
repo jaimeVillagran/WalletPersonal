@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * La clase Withdrawal implementa la interfaz Transaction y representa un
- * retiro.
+ * La clase Withdrawal implementa la interfaz Transaction y representa un r
+ * etiro.
  * Contiene métodos para obtener detalles sobre el retiro como el tipo, la
  * cantidad, la fecha y la descripción.
  */
@@ -14,10 +14,10 @@ public class Withdrawal implements Transaction {
     private LocalDateTime date;
 
     /**
-     * Constructor para la clase Withdrawal.
-     * Inicializa la cantidad del retiro y establece la fecha a la hora actual.
+     * Constructor for the Withdrawal class.
+     * Initializes the withdrawal amount and sets the date to the current time.
      *
-     * @param amount la cantidad del retiro.
+     * @param amount the withdrawal amount.
      */
     public Withdrawal(double amount) {
         this.amount = amount;
@@ -25,10 +25,10 @@ public class Withdrawal implements Transaction {
     }
 
     /**
-     * Devuelve el tipo de la transacción.
-     * En este caso, siempre devolverá "Retiro".
+     * Returns the type of the transaction.
+     * In this case, it always returns "Retiro" (Withdrawal in Spanish).
      *
-     * @return una cadena de texto que representa el tipo de la transacción.
+     * @return a string representing the type of the transaction.
      */
     @Override
     public String getType() {
@@ -36,9 +36,9 @@ public class Withdrawal implements Transaction {
     }
 
     /**
-     * Devuelve la cantidad del retiro.
+     * Returns the withdrawal amount.
      *
-     * @return un valor double que representa la cantidad del retiro.
+     * @return a double value representing the withdrawal amount.
      */
     @Override
     public double getAmount() {
@@ -46,9 +46,9 @@ public class Withdrawal implements Transaction {
     }
 
     /**
-     * Devuelve la fecha del retiro.
+     * Returns the date of the withdrawal.
      *
-     * @return un objeto LocalDateTime que representa la fecha del retiro.
+     * @return a LocalDateTime object representing the date of the withdrawal.
      */
     @Override
     public LocalDateTime getDate() {
@@ -56,18 +56,18 @@ public class Withdrawal implements Transaction {
     }
 
     /**
-     * Devuelve la descripción del retiro.
-     * La descripción incluye la cantidad del retiro y la fecha en que se realizó.
+     * Returns the description of the withdrawal.
+     * The description includes the withdrawal amount and the date it was made.
      *
-     * @return una cadena de texto que representa la descripción del retiro.
+     * @return a string representing the description of the withdrawal.
      */
     @Override
     public String getDescription() {
-        // Define el formato de fecha y hora deseado
+        // Define the desired date and time format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm");
-        // Formatea la fecha y hora según el formato deseado
+        // Format the date and time according to the desired format
         String formattedDateTime = date.format(formatter);
-        // Retorna la descripción con el formato ajustado
+        // Return the description with the adjusted format
         return String.format("%s de CLP %.2f el %s", getType(), amount, formattedDateTime);
     }
 }
