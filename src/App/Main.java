@@ -5,37 +5,52 @@ import java.util.Scanner;
 import clases.Authentication;
 import clases.Menu;
 import clases.User;
+import clases.Wallet;
 
 public class Main {
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Mostrar mensaje de bienvenida
         System.out.println("**********************************************");
         System.out.println("* Bienvenido a la billetera Wallet Personal *");
         System.out.println("**********************************************");
 
-        // Crear una instancia de Authentication
-        Authentication auth = new Authentication();
+        // Crear una instancia de UserInteraction para manejar la interacción inicial
+        // con el usuario
+        UserInteraction userInteraction = new UserInteraction(sc);
 
-        // Realizar la autenticación
-        if (!auth.authenticate()) {
+        // Pedir al usuario que ingrese si tiene una cuenta existente o desea crear una
+        // nueva
+        User user = userInteraction.getUser();
 
-            // Cerrar el escáner al salir
-            auth.closeScanner();
+        if (user == null) {
+            // Si no se pudo obtener un usuario válido, salir de la aplicación
+            System.out.println("No se pudo obtener un usuario válido. Cerrando la aplicación.");
+            sc.close();
             return;
         }
 
-        // Define the getPredefinedUser() method in the Authentication class
-        User predefinedUser = auth.getPredefinedUser(); // Get the predefinedUser
-
-        // Definir tipo de cambio
+        // Definir el tipo de cambio (CLP a USD)
         double exchangeRate = 950.0; // CLP por USD
 
-        // Obetner instancia de Menu
-        Menu menu = new Menu(predefinedUser, exchangeRate);
+        // Crear instancias de Wallet y TransactionManager
+        Wallet wallet = user.getWallet();
+        TransactionManager transactionManager = new TransactionManager(wallet);
 
-        // Mostrar el menú
+        // Crear una instancia de BusinessLogic
+        BusinessLogic businessLogic = new BusinessLogic(wallet, transactionManager, exchangeRate);
+
+        // Crear una instancia de Menu con BusinessLogic
+        Menu menu = new Menu(businessLogic);
+
+        // Mostrar el menú para interactuar con el usuario
         menu.displayMenu();
 
-        // Cerrar el escáner al salir
-        auth.closeScanner();
+        // Cerrar el objeto Scanner al salir
+        sc.close();
+
+        System.out.println("Cerrando la aplicación.");
     }
 }
