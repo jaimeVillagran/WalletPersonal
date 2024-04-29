@@ -3,13 +3,15 @@ package transactions;
 import java.time.LocalDateTime;
 
 public interface Transaction {
-
-    // Métodos para obtener los atributos de la transacción
+    // Método para obtener el tipo de transacción (depósito o retiro)
     String getType();
 
+    // Método para obtener el monto de la transacción
     double getAmount();
 
+    // Método para obtener la fecha de la transacción
     LocalDateTime getDate();
 
-    String getDescription(); // Agregamos un nuevo método que retorna una descripción
+    // Método para obtener la descripción de la transacción
+    String getDescription();
 }
