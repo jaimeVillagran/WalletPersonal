@@ -2,7 +2,7 @@ package App;
 
 import java.util.Scanner;
 
-import Authentication.Authentication;
+import Authentication.Authenticator;
 import User.User;
 import User.Wallet;
 import menu.Menu;
