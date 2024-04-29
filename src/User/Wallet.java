@@ -1,69 +1,63 @@
 package User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import transactions.Deposit;
 import transactions.Transaction;
 import transactions.Withdrawal;
 
 public class Wallet {
   private double balance;
-  private final List<Transaction> transactions;
 
   public Wallet() {
     this.balance = 0;
-    this.transactions = new ArrayList<>();
   }
+
+  // Getter para obtener el balance actual de la billetera
+
+  public double getBalance() {
+    return balance;
+  }
+
+  // Setter para modificar el balance de la billetera
+
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
+
+  // Método para mostrar el saldo actual de la billetera
+
+  public void checkBalance() {
+    System.out.println("********************************");
+    System.out.println("* Billetera Wallet Personal *");
+    System.out.println("********************************");
+    System.out.println("Saldo actual: " + balance + String.format("%.2f", balance));
+    System.out.println("********************************");
+  }
+
+  // Método para depositar una cantidad de dinero en la billetera
 
   public void deposit(double amount) {
     if (amount > 0) {
-      Deposit deposit = new Deposit(amount); // Crea un nuevo objeto de la clase
-      transactions.add(deposit); // Agrega la transacción al historial de
-      balance += amount; // Actualiza el saldo de la billeter
-      System.out.println("Depósito exitoso."); // Imprime el mensaje de exito
-      System.out.println(deposit.getDescription()); // Imprime la descripción
+      // Verifica que la cantidad a depositar sea mayor a 0
+      balance += amount; // Suma la cantidad al saldo actual
+      // Imprime el mensaje de exito
+      System.out.println("Depósito exitoso con éxito. Nuevo saldo: CLP" + String.format("%.2f", balance));
     } else {
-      System.out.println("No se puede realizar el depósito."); // Imprime el mensaje de error
-      System.out.println("La cantidad a depositar debe ser mayor a 0."); // Imprime el mensaje de error
+      System.out.println("El monto a depositar debe ser mayor a cero"); // Imprime el mensaje de error
     }
 
   }
 
+  // Método para retirar una cantidad de dinero de la billetera
   public void withdraw(double amount) {
-    if (amount <= balance && amount > 0) {
-      Withdrawal withdrawal = new Withdrawal(amount); // Crea un nuevo objeto de la clase
-      transactions.add(withdrawal); // Agrega la transacción al historial de
-      balance -= amount; // Actualiza el saldo de la billeter
-      System.out.println("Retiro exitoso."); // Imprime el mensaje de exito
-      System.out.println(withdrawal.getDescription()); // Imprime la descripción
+    if (amount > 0 && balance >= amount) {
+      // Verifica que la cantidad a retirar sea mayor a 0
+      balance -= amount;
+      // Imprime el mensaje de exito
+      System.out.println("Retiro realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", balance));
+    } else if (amount <= 0) {
+      System.out.println("El monto a retirar debe ser mayor que cero.");
     } else {
-      System.out.println("No se puede realizar el retiro."); // Imprime el mensaje de error
-      System.out.println("La cantidad a retirar debe ser mayor a 0 y menor o igual al saldo."); // Imprime el mensaje de
-                                                                                                // error
-    }
-
-  }
-
-  public double getBalance() {
-    return balance; // Devuelve el saldo actual
-  }
-
-  public void checkBalance() {
-    System.out.println("****************");
-    System.out.println("* Billetera Wallet Personal *");
-    System.out.println("****************");
-    System.out.println("Saldo actual: " + balance);
-    System.out.println("****************");
-  }
-
-  public void showTransactions() {
-    System.out.println("****************");
-    System.out.println("* Transacciones *");
-    System.out.println("****************");
-    for (Transaction transaction : transactions) {
-      System.out.println(transaction.getDescription());
+      System.out.println("No hay saldo suficiente para realizar el retiro.");
     }
   }
-
 }
