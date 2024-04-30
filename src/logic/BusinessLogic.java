@@ -21,7 +21,11 @@ public class BusinessLogic {
 
   // Método para realizar un retiro
   public void withdraw(double amount) {
-    transactionManager.withdraw(amount);
+    double currentBalance = wallet.getBalance();
+    if (amount > currentBalance) {
+      throw new IllegalArgumentException("La cantidad de retiro supera el saldo actual");
+    }
+    wallet.withdraw(amount);
   }
 
   // Método para consultar el saldo en CLP
