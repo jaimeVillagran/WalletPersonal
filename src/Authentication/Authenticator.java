@@ -11,11 +11,11 @@ public class Authenticator {
   // Constructor para crear una instancia de Authenticator
   public Authenticator(User predefinedUser) {
     this.predefinedUser = predefinedUser;
-    this.sc = new Scanner(System.in);
+    this.sc = sc;
   }
 
   // Método para autenticar al usuario
-  public boolean authenticate() {
+  public boolean authenticate(String email, String password) {
     int attempts = 0;
     while (attempts < 3) {
       System.out.print("Ingrese su email: ");
@@ -41,17 +41,15 @@ public class Authenticator {
     return false;
   }
 
-  // Cerrar el objeto Scanner
-  public void closeScanner() {
-    sc.close();
-  }
-
   // Setter para cambiar el usuario predefinido si es necesario
   public void setPredefinedUser(User predefinedUser) {
+
     this.predefinedUser = predefinedUser;
   }
 
   // Getter para obtener el usuario predefinido
   public User getPredefinedUser() {
-        return predefinedUser;
-    }
+    return predefinedUser;
+  }
+
+}
