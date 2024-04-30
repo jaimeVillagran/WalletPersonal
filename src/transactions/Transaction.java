@@ -2,16 +2,35 @@ package transactions;
 
 import java.time.LocalDateTime;
 
+/**
+ * La interfaz Transaction representa una transacción en una billetera.
+ */
 public interface Transaction {
-    // Método para obtener el tipo de transacción (depósito o retiro)
+    /**
+     * Devuelve el tipo de la transacción (depósito o retiro).
+     *
+     * @return el tipo de la transacción
+     */
     String getType();
 
-    // Método para obtener el monto de la transacción
+    /**
+     * Devuelve el monto de la transacción.
+     *
+     * @return el monto de la transacción
+     */
     double getAmount();
 
-    // Método para obtener la fecha de la transacción
+    /**
+     * Returns the date of the transaction.
+     *
+     * @return the date of the transaction
+     */
     LocalDateTime getDate();
 
-    // Método para obtener la descripción de la transacción
+    /**
+     * Returns the description of the transaction.
+     *
+     * @return the description of the transaction
+     */
     String getDescription();
 }
