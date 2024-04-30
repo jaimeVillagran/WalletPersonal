@@ -58,4 +58,10 @@ public class Menu {
             }
         }
     }
+
+    // Puedes pasar la instancia de Scanner a otras clases o métodos según sea
+    // necesario
+    public Scanner getScanner() {
+        return sc;
+    }
 }
