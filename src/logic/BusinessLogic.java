@@ -36,12 +36,19 @@ public class BusinessLogic {
   }
 
   // Método para consultar el saldo en USD
-  public void checkBalanceInUSD() {
+  public double checkBalanceInUSD() {
     double balanceInCLP = wallet.getBalance();
     double balanceInUSD = balanceInCLP / exchangeRate;
     System.out.println("********************************");
     System.out.println("Saldo actual en dólares: USD " + String.format("%.2f", balanceInUSD));
     System.out.println("********************************");
+    // Devuelve el saldo calculado en USD
+    return (balanceInUSD);
+  }
+
+  // Método para cambiar la tasa de cambio
+  public void setExchangeRate(double newExchangeRate) {
+    this.exchangeRate = newExchangeRate;
   }
 
 }
