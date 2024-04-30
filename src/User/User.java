@@ -14,12 +14,11 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.password = password;
-        this.wallet = new Wallet(); // Crea una nueva billetera para el usuario
+        this.wallet = new Wallet(0.0); // Crea una nueva billetera para el usuario
 
     }
 
     // Getters y setters
-
     public String getFirstname() {
         return firstname;
     }
@@ -41,17 +40,28 @@ public class User {
         return email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // Getter para la billetera del usuario
     public Wallet getWallet() {
         return wallet;
     }
 
-    // Metodo para verificar la contraseña del usuario
+    // Setter para la billetera del usuario
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
 
+    // Metodo para verificar la contraseña del usuario
     public boolean checkPassword(String inputpassword) {
         return this.password.equals(password);
     }
