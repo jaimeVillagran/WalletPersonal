@@ -1,14 +1,11 @@
 package User;
 
-import transactions.Deposit;
-import transactions.Transaction;
-import transactions.Withdrawal;
-
 public class Wallet {
   private double balance;
 
-  public Wallet() {
-    this.balance = 0;
+  // Constructor para crear una billetera con saldo inicial cero
+  public Wallet(double initialBalance) {
+    this.balance = initialBalance;
   }
 
   // Getter para obtener el balance actual de la billetera
@@ -27,14 +24,11 @@ public class Wallet {
 
   public void checkBalance() {
     System.out.println("********************************");
-    System.out.println("* Billetera Wallet Personal *");
-    System.out.println("********************************");
-    System.out.println("Saldo actual: " + balance + String.format("%.2f", balance));
+    System.out.println("Saldo actual: CLP " + String.format("%.2f", balance));
     System.out.println("********************************");
   }
 
   // Método para depositar una cantidad de dinero en la billetera
-
   public void deposit(double amount) {
     if (amount > 0) {
       // Verifica que la cantidad a depositar sea mayor a 0
@@ -50,9 +44,8 @@ public class Wallet {
   // Método para retirar una cantidad de dinero de la billetera
   public void withdraw(double amount) {
     if (amount > 0 && balance >= amount) {
-      // Verifica que la cantidad a retirar sea mayor a 0
+      // Verifica que la cantidad a retirar sea mayor a 0 y haya saldo suficiente
       balance -= amount;
-      // Imprime el mensaje de exito
       System.out.println("Retiro realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", balance));
     } else if (amount <= 0) {
       System.out.println("El monto a retirar debe ser mayor que cero.");
