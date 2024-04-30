@@ -9,13 +9,13 @@ public class Authenticator {
   private final Scanner sc;
 
   // Constructor para crear una instancia de Authenticator
-  public Authenticator(User predefinedUser) {
+  public Authenticator(User predefinedUser, Scanner sc) {
     this.predefinedUser = predefinedUser;
-    this.sc = sc;
+    this.sc = sc;;
   }
 
   // Método para autenticar al usuario
-  public boolean authenticate(String email, String password) {
+  public boolean authenticate(String username, String password) {
     int attempts = 0;
     while (attempts < 3) {
       System.out.print("Ingrese su email: ");
@@ -26,7 +26,7 @@ public class Authenticator {
       // Verificar las credenciales proporcionadas
       if (predefinedUser.getEmail().equals(inputEmail) && predefinedUser.checkPassword(inputPassword)) {
         System.out.println(
-            "¡Bienvenido, " + predefinedUser.getFirstName() + " " + predefinedUser.getLastName() + "!");
+                "¡Bienvenido, " + predefinedUser.getFirstName() + " " + predefinedUser.getLastName() + "!");
         return true;
       } else {
         attempts++;
@@ -51,5 +51,4 @@ public class Authenticator {
   public User getPredefinedUser() {
     return predefinedUser;
   }
-
 }

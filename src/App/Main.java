@@ -1,12 +1,12 @@
 package App;
 
+import user.User;
+import user.Wallet;
 import authentication.UserAuthenticator;
 import logic.BusinessLogic;
 import menu.Menu;
 import transactions.TransactionManager;
-import user.User;
 import user.UserAccountManager;
-import user.Wallet;
 
 import java.util.Scanner;
 

@@ -2,7 +2,7 @@ package transactions;
 
 import java.util.ArrayList;
 import java.util.List;
-import User.Wallet;
+import user.Wallet;
 
 /**
  * La clase TransactionManager representa un administrador de transacciones

@@ -1,23 +1,29 @@
 package menu;
 
 import java.util.Scanner;
-
 import logic.BusinessLogic;
 
+/**
+ * This class represents a Menu for a banking application.
+ * It provides options to deposit, withdraw, check balance in different currencies, and exit the application.
+ */
 public class Menu {
     private Scanner sc;
     private BusinessLogic businessLogic;
 
-    // Constructor para crear una instancia de menú con una instancia de lógica de
-    // negocio
+    /**
+     * Constructs a new Menu instance with a given BusinessLogic instance.
+     * @param businessLogic the BusinessLogic instance to be used for banking operations.
+     */
     public Menu(BusinessLogic businessLogic) {
         this.sc = new Scanner(System.in);
         this.businessLogic = businessLogic;
     }
 
-    // Metodo para mostrar el menu y realizar las acciones correspondientes
-    // dependiendo de la opción seleccionada por el usuario.
-
+    /**
+     * Displays the menu and handles user input to perform corresponding actions.
+     * The menu is displayed in a loop until the user chooses to exit.
+     */
     public void displayMenu() {
         while (true) {
             System.out.println("************************");
@@ -31,7 +37,7 @@ public class Menu {
             System.out.print("Seleccione una opción: ");
             int option = sc.nextInt();
 
-            // Manejar la opción seleccionada por el usuario
+            // Handle the option selected by the user
             switch (option) {
                 case 1:
                     System.out.print("Ingrese monto a depositar: ");
@@ -41,10 +47,13 @@ public class Menu {
                 case 2:
                     System.out.print("Ingrese monto a retirar: ");
                     double withdrawAmount = sc.nextDouble();
-                    businessLogic.withdraw(withdrawAmount);
-                    break;
-                case 3:
-                    businessLogic.checkBalance();
+                    try {
+                        businessLogic.withdraw(withdrawAmount);
+                        System.out.println("Retiro exitoso.");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Por favor, ingrese un monto válido para retirar.");
+                    }
                     break;
                 case 4:
                     businessLogic.checkBalanceInUSD();
@@ -59,8 +68,10 @@ public class Menu {
         }
     }
 
-    // Puedes pasar la instancia de Scanner a otras clases o métodos según sea
-    // necesario
+    /**
+     * Returns the Scanner instance used by this Menu.
+     * @return the Scanner instance used by this Menu.
+     */
     public Scanner getScanner() {
         return sc;
     }

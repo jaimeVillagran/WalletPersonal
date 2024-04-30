@@ -1,4 +1,4 @@
-package User;
+package user;
 
 /**
  * La clase Wallet representa una billetera que contiene un saldo.
