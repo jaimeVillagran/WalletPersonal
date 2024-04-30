@@ -19,6 +19,19 @@ public class Main {
         System.out.println("* Bienvenido a la billetera Wallet Personal *");
         System.out.println("**********************************************");
 
+        // Crear instancias de UserAuthenticator y UserAccountManager
+        User predefinedUser = new User("Jaime", "Villagran", "jaime@gmail.com", "jaime1234");
+        UserAuthenticator authenticator = new UserAuthenticator(predefinedUser, sc, 3);
+        UserAccountManager accountManager = new UserAccountManager(sc);
+
+        // Intentar autenticar al usuario o crear una nueva cuenta
+        User user = null;
+        System.out.println("Tienes una cuenta activa o deseas crear una?");
+        System.out.println("* Opción 1 - Cuenta activa");
+        System.out.println("* Opción 2 - Crear cuenta");
+        System.out.print("Elige una opción (1/2): ");
+        String choice = sc.nextLine().trim();
+
         // Crear una instancia de UserInteraction para manejar la interacción inicial
         // con el usuario
         UserInteraction userInteraction = new UserInteraction(sc);
