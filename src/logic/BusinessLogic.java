@@ -1,5 +1,8 @@
 package logic;
 
+import User.Wallet;
+import transactions.TransactionManager;
+
 public class BusinessLogic {
   private TransactionManager transactionManager;
   private Wallet wallet;
@@ -37,5 +40,4 @@ public class BusinessLogic {
     System.out.println("********************************");
   }
 
-  // Otros métodos de lógica de negocio pueden ser agregados aquí
 }

@@ -1,11 +1,13 @@
 package App;
 
-import java.util.Scanner;
-
-import Authentication.Authenticator;
+import logic.BusinessLogic;
+import menu.Menu;
+import menu.UserInteraction;
+import transactions.TransactionManager;
 import User.User;
 import User.Wallet;
-import menu.Menu;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -42,15 +44,23 @@ public class Main {
         // Crear una instancia de BusinessLogic
         BusinessLogic businessLogic = new BusinessLogic(wallet, transactionManager, exchangeRate);
 
-        // Crear una instancia de Menu con BusinessLogic
+        /*
+         * Crear una instancia de Menu con BusinessLogic
+         * 
+         * Menu menu = new Menu(businessLogic);
+         */
+
+        // Mostrar el menú para interactuar con el usuario
+
         Menu menu = new Menu(businessLogic);
 
         // Mostrar el menú para interactuar con el usuario
+
         menu.displayMenu();
 
         // Cerrar el objeto Scanner al salir
         sc.close();
 
-        System.out.println("Cerrando la aplicación.");
     }
+
 }
