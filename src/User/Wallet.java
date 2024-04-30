@@ -1,50 +1,68 @@
 package User;
 
+/**
+ * La clase Wallet representa una billetera que contiene un saldo.
+ */
 public class Wallet {
   private double balance;
 
-  // Constructor para crear una billetera con saldo inicial cero
+  /**
+   * Construye una billetera con el saldo inicial especificado.
+   *
+   * @param initialBalance el saldo inicial de la billetera
+   */
   public Wallet(double initialBalance) {
     this.balance = initialBalance;
   }
 
-  // Getter para obtener el balance actual de la billetera
-
+  /**
+   * Devuelve el saldo actual de la billetera.
+   *
+   * @return el saldo actual de la billetera
+   */
   public double getBalance() {
     return balance;
   }
 
-  // Setter para modificar el balance de la billetera
-
+  /**
+   * Establece el saldo de la billetera al valor especificado.
+   *
+   * @param balance el nuevo saldo de la billetera
+   */
   public void setBalance(double balance) {
     this.balance = balance;
   }
 
-  // Método para mostrar el saldo actual de la billetera
-
+  /**
+   * Muestra el saldo actual de la billetera.
+   */
   public void checkBalance() {
     System.out.println("********************************");
     System.out.println("Saldo actual: CLP " + String.format("%.2f", balance));
     System.out.println("********************************");
   }
 
-  // Método para depositar una cantidad de dinero en la billetera
+  /**
+   * Deposita la cantidad especificada de dinero en la billetera.
+   *
+   * @param amount la cantidad de dinero a depositar
+   */
   public void deposit(double amount) {
     if (amount > 0) {
-      // Verifica que la cantidad a depositar sea mayor a 0
-      balance += amount; // Suma la cantidad al saldo actual
-      // Imprime el mensaje de exito
+      balance += amount;
       System.out.println("Depósito exitoso con éxito. Nuevo saldo: CLP" + String.format("%.2f", balance));
     } else {
-      System.out.println("El monto a depositar debe ser mayor a cero"); // Imprime el mensaje de error
+      System.out.println("El monto a depositar debe ser mayor a cero");
     }
-
   }
 
-  // Método para retirar una cantidad de dinero de la billetera
+  /**
+   * Retira la cantidad especificada del saldo de la billetera.
+   * 
+   * @param amount la cantidad a retirar
+   */
   public void withdraw(double amount) {
     if (amount > 0 && balance >= amount) {
-      // Verifica que la cantidad a retirar sea mayor a 0 y haya saldo suficiente
       balance -= amount;
       System.out.println("Retiro realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", balance));
     } else if (amount <= 0) {
