@@ -4,8 +4,8 @@ import user.Wallet;
 import transactions.TransactionManager;
 
 /**
- * This class represents the business logic for a banking application.
- * It provides methods to deposit, withdraw, check balance in different currencies, and set the exchange rate.
+ * Esta clase representa la lógica de negocio para una aplicación bancaria.
+ * Proporciona métodos para depositar, retirar, verificar el saldo en diferentes monedas y establecer la tasa de cambio.
  */
 public class BusinessLogic {
   private TransactionManager transactionManager;
@@ -13,10 +13,10 @@ public class BusinessLogic {
   private double exchangeRate;
 
   /**
-   * Constructs a new BusinessLogic instance with a given Wallet, TransactionManager instances and an exchange rate.
-   * @param wallet the Wallet instance to be used for banking operations.
-   * @param transactionManager the TransactionManager instance to be used for banking operations.
-   * @param exchangeRate the initial exchange rate to be used for currency conversion.
+   * Construye una nueva instancia de BusinessLogic con una instancia de Wallet, TransactionManager y una tasa de cambio dada.
+   * @param wallet la instancia de Wallet que se utilizará para las operaciones bancarias.
+   * @param transactionManager la instancia de TransactionManager que se utilizará para las operaciones bancarias.
+   * @param exchangeRate la tasa de cambio inicial que se utilizará para la conversión de moneda.
    */
   public BusinessLogic(Wallet wallet, TransactionManager transactionManager, double exchangeRate) {
     this.wallet = wallet;
@@ -25,17 +25,17 @@ public class BusinessLogic {
   }
 
   /**
-   * Deposits a given amount to the wallet.
-   * @param amount the amount to be deposited.
+   * Deposita una cantidad dada en la billetera.
+   * @param amount la cantidad a depositar.
    */
   public void deposit(double amount) {
     transactionManager.deposit(amount);
   }
 
   /**
-   * Withdraws a given amount from the wallet.
-   * Throws an IllegalArgumentException if the amount to be withdrawn is greater than the current balance.
-   * @param amount the amount to be withdrawn.
+   * Retira una cantidad dada de la billetera.
+   * Lanza una IllegalArgumentException si la cantidad a retirar es mayor que el saldo actual.
+   * @param amount la cantidad a retirar.
    */
   public void withdraw(double amount) {
     double currentBalance = wallet.getBalance();
@@ -46,7 +46,7 @@ public class BusinessLogic {
   }
 
   /**
-   * Checks and prints the current balance in the wallet in CLP.
+   * Verifica e imprime el saldo actual en la billetera en CLP.
    */
   public void checkBalance() {
     System.out.println("********************************");
@@ -55,8 +55,8 @@ public class BusinessLogic {
   }
 
   /**
-   * Checks and prints the current balance in the wallet in USD.
-   * @return the current balance in the wallet in USD.
+   * Verifica e imprime el saldo actual en la billetera en USD.
+   * @return el saldo actual en la billetera en USD.
    */
   public double checkBalanceInUSD() {
     double balanceInCLP = wallet.getBalance();
@@ -68,8 +68,8 @@ public class BusinessLogic {
   }
 
   /**
-   * Sets a new exchange rate for currency conversion.
-   * @param newExchangeRate the new exchange rate to be set.
+   * Establece una nueva tasa de cambio para la conversión de moneda.
+   * @param newExchangeRate la nueva tasa de cambio a establecer.
    */
   public void setExchangeRate(double newExchangeRate) {
     this.exchangeRate = newExchangeRate;

@@ -4,11 +4,21 @@ import user.User;
 
 import java.util.Scanner;
 
+/**
+ * Esta clase representa un Autenticador de Usuario para una aplicación bancaria.
+ * Proporciona métodos para autenticar a un usuario basado en credenciales predefinidas.
+ */
 public class UserAuthenticator {
   private final Scanner scanner;
   private final User predefinedUser;
   private final int maxAttempts;
 
+  /**
+   * Construye una nueva instancia de UserAuthenticator con una instancia de User, Scanner y un número máximo de intentos dados.
+   * @param predefinedUser la instancia de User que se utilizará para la autenticación.
+   * @param sc la instancia de Scanner que se utilizará para la entrada del usuario.
+   * @param maxAttempts el número máximo de intentos para la autenticación.
+   */
   public UserAuthenticator(User predefinedUser, Scanner sc, int maxAttempts) {
     this.predefinedUser = predefinedUser;
     this.scanner = sc;
@@ -16,10 +26,8 @@ public class UserAuthenticator {
   }
 
   /**
-   * Verifica si las credenciales proporcionadas coinciden con las credenciales
-   * almacenadas.
-   *
-   * @param email    El email proporcionado por el usuario.
+   * Verifica si las credenciales proporcionadas coinciden con las credenciales almacenadas.
+   * @param email El email proporcionado por el usuario.
    * @param password La contraseña proporcionada por el usuario.
    * @return true si las credenciales coinciden, false de lo contrario.
    */
@@ -29,7 +37,6 @@ public class UserAuthenticator {
 
   /**
    * Obtiene el número máximo de intentos permitidos.
-   *
    * @return El número máximo de intentos permitidos.
    */
   public int getMaxAttempts() {
@@ -37,9 +44,7 @@ public class UserAuthenticator {
   }
 
   /**
-   * Autentica al usuario ingresando las credenciales (email y contraseña) hasta
-   * un máximo de intentos.
-   *
+   * Autentica al usuario ingresando las credenciales (email y contraseña) hasta un máximo de intentos.
    * @return User si la autenticación es exitosa, null de lo contrario.
    */
   public User authenticate() {

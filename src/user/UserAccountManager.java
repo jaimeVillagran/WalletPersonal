@@ -2,13 +2,25 @@ package user;
 
 import java.util.Scanner;
 
+/**
+ * Esta clase representa un Administrador de Cuentas de Usuario para una aplicación bancaria.
+ * Proporciona métodos para crear un nuevo usuario.
+ */
 public class UserAccountManager {
   private final Scanner scanner;
 
+  /**
+   * Construye una nueva instancia de UserAccountManager con una instancia de Scanner dada.
+   * @param scanner la instancia de Scanner que se utilizará para la entrada del usuario.
+   */
   public UserAccountManager(Scanner scanner) {
     this.scanner = scanner;
   }
 
+  /**
+   * Crea un nuevo usuario solicitando al usuario que ingrese su nombre, apellido, correo electrónico y contraseña.
+   * @return la nueva instancia de User creada.
+   */
   public User createUser() {
     // Color azul para el mensaje de crear una nueva cuenta
     System.out.println("\u001B[34m********************************************************");

@@ -4,16 +4,16 @@ import java.util.Scanner;
 import logic.BusinessLogic;
 
 /**
- * This class represents a Menu for a banking application.
- * It provides options to deposit, withdraw, check balance in different currencies, and exit the application.
+ * Esta clase representa un Menú para una aplicación bancaria.
+ * Proporciona opciones para depositar, retirar, consultar el saldo en diferentes monedas y salir de la aplicación.
  */
 public class Menu {
     private Scanner sc;
     private BusinessLogic businessLogic;
 
     /**
-     * Constructs a new Menu instance with a given BusinessLogic instance.
-     * @param businessLogic the BusinessLogic instance to be used for banking operations.
+     * Construye una nueva instancia de Menu con una instancia de BusinessLogic dada.
+     * @param businessLogic la instancia de BusinessLogic que se utilizará para las operaciones bancarias.
      */
     public Menu(BusinessLogic businessLogic) {
         this.sc = new Scanner(System.in);
@@ -21,8 +21,8 @@ public class Menu {
     }
 
     /**
-     * Displays the menu and handles user input to perform corresponding actions.
-     * The menu is displayed in a loop until the user chooses to exit.
+     * Muestra el menú y maneja la entrada del usuario para realizar las acciones correspondientes.
+     * El menú se muestra en un bucle hasta que el usuario elige salir.
      */
     public void displayMenu() {
         while (true) {
@@ -37,7 +37,7 @@ public class Menu {
             System.out.print("Seleccione una opción: ");
             int option = sc.nextInt();
 
-            // Handle the option selected by the user
+            // Maneja la opción seleccionada por el usuario
             switch (option) {
                 case 1:
                     System.out.print("Ingrese monto a depositar: ");
@@ -69,8 +69,8 @@ public class Menu {
     }
 
     /**
-     * Returns the Scanner instance used by this Menu.
-     * @return the Scanner instance used by this Menu.
+     * Devuelve la instancia de Scanner utilizada por este Menú.
+     * @return la instancia de Scanner utilizada por este Menú.
      */
     public Scanner getScanner() {
         return sc;

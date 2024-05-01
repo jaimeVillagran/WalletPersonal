@@ -4,17 +4,31 @@ import user.User;
 
 import java.util.Scanner;
 
+/**
+ * Esta clase representa un Autenticador para una aplicación bancaria.
+ * Proporciona métodos para autenticar a un usuario basado en credenciales predefinidas.
+ */
 public class Authenticator {
   private User predefinedUser;
   private final Scanner sc;
 
-  // Constructor para crear una instancia de Authenticator
+  /**
+   * Construye una nueva instancia de Authenticator con una instancia de User y Scanner dadas.
+   * @param predefinedUser la instancia de User que se utilizará para la autenticación.
+   * @param sc la instancia de Scanner que se utilizará para la entrada del usuario.
+   */
   public Authenticator(User predefinedUser, Scanner sc) {
     this.predefinedUser = predefinedUser;
-    this.sc = sc;;
+    this.sc = sc;
   }
 
-  // Método para autenticar al usuario
+  /**
+   * Autentica a un usuario basado en el nombre de usuario y la contraseña proporcionados.
+   * Al usuario se le dan tres intentos para ingresar las credenciales correctas.
+   * @param username el nombre de usuario a autenticar.
+   * @param password la contraseña a autenticar.
+   * @return verdadero si el usuario se autentica con éxito, falso en caso contrario.
+   */
   public boolean authenticate(String username, String password) {
     int attempts = 0;
     while (attempts < 3) {
@@ -41,13 +55,18 @@ public class Authenticator {
     return false;
   }
 
-  // Setter para cambiar el usuario predefinido si es necesario
+  /**
+   * Establece una nueva instancia de User predefinida.
+   * @param predefinedUser la nueva instancia de User a establecer.
+   */
   public void setPredefinedUser(User predefinedUser) {
-
     this.predefinedUser = predefinedUser;
   }
 
-  // Getter para obtener el usuario predefinido
+  /**
+   * Devuelve la instancia de User predefinida.
+   * @return la instancia de User predefinida.
+   */
   public User getPredefinedUser() {
     return predefinedUser;
   }
