@@ -1,44 +1,29 @@
 package transactions;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 /**
- * Representa una transacción de depósito.
+ * La clase Deposit representa una transacción de depósito en una billetera
+ * personal.
  * Implementa la interfaz Transaction.
  */
-
 public class Deposit implements Transaction {
     private double amount;
-    private LocalDateTime date;
+    private String description;
 
     /**
-     * Construye una transacción de depósito con una cantidad específica.
+     * Crea una nueva instancia de la clase Deposit con el monto especificado.
+     * La descripción de la transacción se genera automáticamente.
      * 
-     * @param amount La cantidad a depositar.
+     * @param amount el monto del depósito
      */
     public Deposit(double amount) {
         this.amount = amount;
-        this.date = LocalDateTime.now();
-    }
-
-    // Implementaciones de los métodos de la interfaz Transaction
-
-    /**
-     * Obtiene el tipo de la transacción.
-     * 
-     * @return El tipo de la transacción (en este caso, "Depósito").
-     */
-    @Override
-    public String getType() {
-        return "Depósito";
+        this.description = "Depósito de " + amount;
     }
 
     /**
-     * Obtiene la cantidad de la transacción.
+     * Obtiene el monto del depósito.
      * 
-     * @return La cantidad del depósito.
+     * @return el monto del depósito
      */
     @Override
     public double getAmount() {
@@ -46,24 +31,21 @@ public class Deposit implements Transaction {
     }
 
     /**
-     * Obtiene la fecha y hora de la transacción.
-     * 
-     * @return La fecha y hora del depósito.
-     */
-    @Override
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    /**
      * Obtiene la descripción de la transacción.
      * 
-     * @return La descripción del depósito, incluyendo el tipo, cantidad y fecha.
+     * @return la descripción de la transacción
      */
     @Override
     public String getDescription() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm");
-        String formattedDateTime = date.format(formatter);
-        return String.format(Locale.US, "%s of CLP %.2f on %s", getType(), amount, formattedDateTime);
+        return description;
+    }
+
+    /**
+     * Ejecuta la transacción de depósito.
+     * Aquí se implementaría la lógica para ejecutar el depósito.
+     */
+    @Override
+    public void execute() {
+        System.out.println("Ejecutando depósito: " + description);
     }
 }
