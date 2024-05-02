@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > UserAuthenticator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">authentication</a>
+</div>
+
+<h1>Coverage Summary for Class: UserAuthenticator (authentication)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserAuthenticator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package authentication;
+&nbsp;
+&nbsp;import user.User;
+&nbsp;
+&nbsp;import java.util.Scanner;
+&nbsp;
+&nbsp;/**
+&nbsp; * Esta clase representa un Autenticador de Usuario para una aplicación bancaria.
+&nbsp; * Proporciona métodos para autenticar a un usuario basado en credenciales predefinidas.
+&nbsp; */
+&nbsp;public class UserAuthenticator {
+&nbsp;  private final Scanner scanner;
+&nbsp;  private final User predefinedUser;
+&nbsp;  private final int maxAttempts;
+&nbsp;
+&nbsp;  /**
+&nbsp;   * Construye una nueva instancia de UserAuthenticator con una instancia de User, Scanner y un número máximo de intentos dados.
+&nbsp;   * @param predefinedUser la instancia de User que se utilizará para la autenticación.
+&nbsp;   * @param sc la instancia de Scanner que se utilizará para la entrada del usuario.
+&nbsp;   * @param maxAttempts el número máximo de intentos para la autenticación.
+&nbsp;   */
+<b class="nc">&nbsp;  public UserAuthenticator(User predefinedUser, Scanner sc, int maxAttempts) {</b>
+<b class="nc">&nbsp;    this.predefinedUser = predefinedUser;</b>
+<b class="nc">&nbsp;    this.scanner = sc;</b>
+<b class="nc">&nbsp;    this.maxAttempts = maxAttempts;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  /**
+&nbsp;   * Verifica si las credenciales proporcionadas coinciden con las credenciales almacenadas.
+&nbsp;   * @param email El email proporcionado por el usuario.
+&nbsp;   * @param password La contraseña proporcionada por el usuario.
+&nbsp;   * @return true si las credenciales coinciden, false de lo contrario.
+&nbsp;   */
+&nbsp;  private boolean credentialsMatch(String email, String password) {
+<b class="nc">&nbsp;    return predefinedUser.getEmail().equals(email) &amp;&amp; predefinedUser.checkPassword(password);</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  /**
+&nbsp;   * Obtiene el número máximo de intentos permitidos.
+&nbsp;   * @return El número máximo de intentos permitidos.
+&nbsp;   */
+&nbsp;  public int getMaxAttempts() {
+<b class="nc">&nbsp;    return maxAttempts;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  /**
+&nbsp;   * Autentica al usuario ingresando las credenciales (email y contraseña) hasta un máximo de intentos.
+&nbsp;   * @return User si la autenticación es exitosa, null de lo contrario.
+&nbsp;   */
+&nbsp;  public User authenticate() {
+<b class="nc">&nbsp;    int attempts = 0;</b>
+&nbsp;
+<b class="nc">&nbsp;    while (attempts &lt; maxAttempts) {</b>
+<b class="nc">&nbsp;      System.out.print(&quot;Ingrese su email: &quot;);</b>
+<b class="nc">&nbsp;      String email = scanner.nextLine().trim();</b>
+<b class="nc">&nbsp;      System.out.print(&quot;Ingrese su contraseña: &quot;);</b>
+<b class="nc">&nbsp;      String password = scanner.nextLine().trim();</b>
+&nbsp;
+<b class="nc">&nbsp;      System.out.println(&quot;Intento &quot; + (attempts + 1) + &quot;: email=&quot; + email + &quot;, password=&quot; + password);</b>
+&nbsp;
+&nbsp;      // Verifica si las credenciales coinciden
+<b class="nc">&nbsp;      if (credentialsMatch(email, password)) {</b>
+&nbsp;        // Credenciales válidas: retorna `predefinedUser`
+<b class="nc">&nbsp;        System.out.println(&quot;¡Bienvenido, &quot; + predefinedUser.getFirstName() + &quot; &quot; + predefinedUser.getLastName() + &quot;!&quot;);</b>
+<b class="nc">&nbsp;        return predefinedUser;</b>
+&nbsp;      } else {
+<b class="nc">&nbsp;        attempts++;</b>
+<b class="nc">&nbsp;        if (attempts &gt;= maxAttempts) {</b>
+&nbsp;          // Mensaje informando que se han agotado los intentos y retorno de null
+<b class="nc">&nbsp;          System.out.println(&quot;Se han agotado los intentos. Por favor, vuelva a intentarlo más tarde.&quot;);</b>
+<b class="nc">&nbsp;          return null;</b>
+&nbsp;        } else {
+&nbsp;          // Mensaje de credenciales incorrectas
+<b class="nc">&nbsp;          System.out.println(&quot;\u001B[31m*****************************************************************&quot;);</b>
+<b class="nc">&nbsp;          System.out.println(&quot;** Credenciales incorrectas. Por favor, inténtelo de nuevo. **&quot;);</b>
+<b class="nc">&nbsp;          System.out.println(&quot;****************************************************************\u001B[0m&quot;);</b>
+&nbsp;        }
+&nbsp;      }
+&nbsp;    }
+&nbsp;    // Si se llega al final sin retornar, aseguramos retornar null por defecto
+<b class="nc">&nbsp;    return null;</b>
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-01 11:31</div>
+</div>
+</body>
+</html>

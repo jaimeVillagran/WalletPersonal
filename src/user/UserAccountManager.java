@@ -1,5 +1,6 @@
 package user;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
@@ -7,15 +8,20 @@ import java.util.Scanner;
  * Proporciona métodos para crear un nuevo usuario.
  */
 public class UserAccountManager {
-  private final Scanner scanner;
+  private final Scanner scanner; // Asegúrate de que esta es la declaración correcta
 
   /**
    * Construye una nueva instancia de UserAccountManager con una instancia de Scanner dada.
    * @param scanner la instancia de Scanner que se utilizará para la entrada del usuario.
    */
   public UserAccountManager(Scanner scanner) {
-    this.scanner = scanner;
+    this.scanner = scanner; // Asegúrate de que el parámetro se asigna correctamente a la variable de instancia
   }
+
+  /**
+   * Crea un nuevo usuario solicitando al usuario que ingrese su nombre, apellido, correo electrónico y contraseña.
+   * @return la nueva instancia de User creada.
+   */
 
   /**
    * Crea un nuevo usuario solicitando al usuario que ingrese su nombre, apellido, correo electrónico y contraseña.

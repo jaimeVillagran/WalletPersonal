@@ -1,0 +1,177 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Withdrawal</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">transactions</a>
+</div>
+
+<h1>Coverage Summary for Class: Withdrawal (transactions)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Withdrawal</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package transactions;
+&nbsp;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.time.format.DateTimeFormatter;
+&nbsp;
+&nbsp;/**
+&nbsp; * La clase Withdrawal implementa la interfaz Transaction y representa un r
+&nbsp; * etiro.
+&nbsp; * Contiene métodos para obtener detalles sobre el retiro como el tipo, la
+&nbsp; * cantidad, la fecha y la descripción.
+&nbsp; */
+&nbsp;public class Withdrawal implements Transaction {
+&nbsp;    private double amount;
+&nbsp;    private LocalDateTime date;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructor for the Withdrawal class.
+&nbsp;     * Initializes the withdrawal amount and sets the date to the current time.
+&nbsp;     *
+&nbsp;     * @param amount the withdrawal amount.
+&nbsp;     */
+<b class="nc">&nbsp;    public Withdrawal(double amount) {</b>
+<b class="nc">&nbsp;        this.amount = amount;</b>
+<b class="nc">&nbsp;        this.date = LocalDateTime.now();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the type of the transaction.
+&nbsp;     * In this case, it always returns &quot;Retiro&quot; (Withdrawal in Spanish).
+&nbsp;     *
+&nbsp;     * @return a string representing the type of the transaction.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public String getType() {
+<b class="nc">&nbsp;        return &quot;Retiro&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the withdrawal amount.
+&nbsp;     *
+&nbsp;     * @return a double value representing the withdrawal amount.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public double getAmount() {
+<b class="nc">&nbsp;        return amount;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the date of the withdrawal.
+&nbsp;     *
+&nbsp;     * @return a LocalDateTime object representing the date of the withdrawal.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public LocalDateTime getDate() {
+<b class="nc">&nbsp;        return date;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the description of the withdrawal.
+&nbsp;     * The description includes the withdrawal amount and the date it was made.
+&nbsp;     *
+&nbsp;     * @return a string representing the description of the withdrawal.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public String getDescription() {
+&nbsp;        // Define the desired date and time format
+<b class="nc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy &#39;a las&#39; HH:mm&quot;);</b>
+&nbsp;        // Format the date and time according to the desired format
+<b class="nc">&nbsp;        String formattedDateTime = date.format(formatter);</b>
+&nbsp;        // Return the description with the adjusted format
+<b class="nc">&nbsp;        return String.format(&quot;%s de CLP %.2f el %s&quot;, getType(), amount, formattedDateTime);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-01 11:31</div>
+</div>
+</body>
+</html>

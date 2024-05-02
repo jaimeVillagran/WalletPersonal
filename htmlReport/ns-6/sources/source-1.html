@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > User</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">user</a>
+</div>
+
+<h1>Coverage Summary for Class: User (user)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">User</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package user;
+&nbsp;
+&nbsp;/**
+&nbsp; * Esta clase representa un Usuario para una aplicación bancaria.
+&nbsp; * Proporciona métodos para obtener información del usuario y verificar la contraseña.
+&nbsp; */
+&nbsp;public class User {
+&nbsp;    private String firstName;
+&nbsp;    private String lastName;
+&nbsp;    private String email;
+&nbsp;    private String password;
+&nbsp;    private Wallet wallet;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Construye una nueva instancia de User con un nombre, apellido, correo electrónico y contraseña dados.
+&nbsp;     * @param firstName el nombre del usuario.
+&nbsp;     * @param lastName el apellido del usuario.
+&nbsp;     * @param email el correo electrónico del usuario.
+&nbsp;     * @param password la contraseña del usuario.
+&nbsp;     */
+<b class="fc">&nbsp;    public User(String firstName, String lastName, String email, String password) {</b>
+<b class="fc">&nbsp;        this.firstName = firstName;</b>
+<b class="fc">&nbsp;        this.lastName = lastName;</b>
+<b class="fc">&nbsp;        this.email = email;</b>
+<b class="fc">&nbsp;        this.password = password;</b>
+<b class="fc">&nbsp;        this.wallet = new Wallet(0.0); // Crea una nueva billetera para el usuario</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devuelve el nombre del usuario.
+&nbsp;     * @return el nombre del usuario.
+&nbsp;     */
+&nbsp;    public String getFirstName() {
+<b class="fc">&nbsp;        return firstName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devuelve el apellido del usuario.
+&nbsp;     * @return el apellido del usuario.
+&nbsp;     */
+&nbsp;    public String getLastName() {
+<b class="fc">&nbsp;        return lastName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devuelve el correo electrónico del usuario.
+&nbsp;     * @return el correo electrónico del usuario.
+&nbsp;     */
+&nbsp;    public String getEmail() {
+<b class="fc">&nbsp;        return email;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devuelve la contraseña del usuario.
+&nbsp;     * @return la contraseña del usuario.
+&nbsp;     */
+&nbsp;    public String getPassword() {
+<b class="fc">&nbsp;        return password;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Verifica la contraseña del usuario.
+&nbsp;     * @param inputPassword la contraseña a verificar.
+&nbsp;     * @return verdadero si la contraseña es correcta, falso en caso contrario.
+&nbsp;     */
+&nbsp;    public boolean checkPassword(String inputPassword) {
+<b class="fc">&nbsp;        return password.equals(inputPassword);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devuelve la billetera del usuario.
+&nbsp;     * @return la billetera del usuario.
+&nbsp;     */
+&nbsp;    public Wallet getWallet() {
+<b class="fc">&nbsp;        return wallet;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-01 11:31</div>
+</div>
+</body>
+</html>

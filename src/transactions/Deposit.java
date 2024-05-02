@@ -2,6 +2,7 @@ package transactions;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Representa una transacción de depósito.
@@ -63,6 +64,6 @@ public class Deposit implements Transaction {
     public String getDescription() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm");
         String formattedDateTime = date.format(formatter);
-        return String.format("%s of CLP %.2f on %s", getType(), amount, formattedDateTime);
+        return String.format(Locale.US, "%s of CLP %.2f on %s", getType(), amount, formattedDateTime);
     }
 }

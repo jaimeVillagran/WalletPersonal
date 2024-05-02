@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserAccountManagerTest {
@@ -14,7 +16,8 @@ public class UserAccountManagerTest {
         // Simula la entrada del usuario
         String data = "John\nDoe\njohndoe@example.com\npassword123\n";
         InputStream stdin = new ByteArrayInputStream(data.getBytes());
-        manager = new UserAccountManager(stdin);
+        Scanner scanner = new Scanner(stdin); // Envuelve el InputStream en un Scanner
+        manager = new UserAccountManager(scanner);// Pasa el Scanner al constructor
     }
 
     @Test
