@@ -1,99 +1,145 @@
 package models;
 
 /**
- * La clase User representa a un usuario en el sistema.
- * Contiene información como el nombre, apellido, correo electrónico, contraseña
- * y billetera del usuario.
+ * La clase Wallet representa una billetera personal que permite realizar
+ * operaciones de depósito y retiro de dinero.
+ * También proporciona métodos para obtener y establecer el saldo actual de la
+ * billetera.
  */
-public class User {
+public class Wallet {
 
-  // Nombre del usuario
-  private String firstName;
-
-  // Apellido del usuario
-  private String lastName;
-
-  // Correo electrónico del usuario
-  private String email;
-
-  // Contraseña del usuario
-  private String password;
-
-  // Billetera del usuario
-  private Wallet wallet;
+  // Saldo actual en la billetera
+  private double balance;
 
   /**
-   * Constructor de User.
-   * Inicializa el nombre, apellido, correo electrónico y contraseña del usuario.
-   * También inicializa la billetera del usuario con un saldo de 0.
+   * Crea una nueva instancia de Wallet con un saldo inicial especificado.
    *
-   * @param firstName el nombre del usuario
-   * @param lastName  el apellido del usuario
-   * @param email     el correo electrónico del usuario
-   * @param password  la contraseña del usuario
+   * @param initialBalance el saldo inicial de la billetera
    */
-  public User(String firstName, String lastName, String email, String password) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.password = password;
-    this.wallet = new Wallet(0);
+  public Wallet(double initialBalance) {
+    this.balance = initialBalance;
   }
 
   /**
-   * Devuelve el nombre del usuario.
-   * 
-   * @return el nombre del usuario
+   * Realiza un depósito en la billetera.
+   * Si el monto es mayor que cero, se suma al saldo actual y se muestra un mensaje de éxito.
+   * Si el monto no es mayor que cero, se muestra un mensaje de error.
+   *
+   * @param amount el monto a depositar
    */
-  public String getFirstName() {
-    return firstName;
+  public void deposit(double amount) {
+    if (amount > 0) {
+      this.balance += amount;
+      System.out.println("Depósito realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", this.balance));
+    } else {
+      System.out.println("El monto a depositar debe ser mayor que cero.");
+    }
   }
 
   /**
-   * Obtiene el apellido del usuario.
-   * 
-   * @return el apellido del usuario
+   * Realiza un retiro de la billetera.
+   * Si el monto es mayor que cero y no supera el saldo actual, se resta del saldo y se muestra un mensaje de éxito.
+   * Si el monto no es válido o supera el saldo actual, se muestra un mensaje de error.
+   *
+   * @param amount el monto a retirar
    */
-  public String getLastName() {
-    return lastName;
+  public void withdraw(double amount) {
+    if (amount > 0 && this.balance >= amount) {
+      this.balance -= amount;
+      System.out.println("Retiro realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", this.balance));
+    } else {
+      System.out.println("Saldo insuficiente para realizar el retiro o monto inválido.");
+    }
   }
 
   /**
-   * Devuelve el correo electrónico del usuario.
-   * 
-   * @return el correo electrónico del usuario
+   * Obtiene el saldo actual de la billetera.
+   *
+   * @return el saldo actual de la billetera
    */
-  public String getEmail() {
-    return email;
+  public double getBalance() {
+    return this.balance;
   }
 
   /**
-   * Devuelve la contraseña del usuario.
-   * 
-   * @return la contraseña del usuario.
+   * Establece el saldo de la billetera a un nuevo valor.
+   *
+   * @param newBalance el nuevo saldo de la billetera
    */
-  public String getPassword() {
-    return password;
+  public void setBalance(double newBalance) {
+    this.balance = newBalance;
+  }
+
+}package models;
+
+/**
+ * La clase Wallet representa una billetera personal que permite realizar
+ * operaciones de depósito y retiro de dinero.
+ * También proporciona métodos para obtener y establecer el saldo actual de la
+ * billetera.
+ */
+public class Wallet {
+
+  // Saldo actual en la billetera
+  private double balance;
+
+  /**
+   * Crea una nueva instancia de Wallet con un saldo inicial especificado.
+   *
+   * @param initialBalance el saldo inicial de la billetera
+   */
+  public Wallet(double initialBalance) {
+    this.balance = initialBalance;
   }
 
   /**
-   * Obtiene la billetera del usuario.
-   * 
-   * @return la billetera del usuario.
+   * Realiza un depósito en la billetera.
+   * Si el monto es mayor que cero, se suma al saldo actual y se muestra un mensaje de éxito.
+   * Si el monto no es mayor que cero, se muestra un mensaje de error.
+   *
+   * @param amount el monto a depositar
    */
-  public Wallet getWallet() {
-    return wallet;
+  public void deposit(double amount) {
+    if (amount > 0) {
+      this.balance += amount;
+      System.out.println("Depósito realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", this.balance));
+    } else {
+      System.out.println("El monto a depositar debe ser mayor que cero.");
+    }
   }
 
   /**
-   * Comprueba si la contraseña proporcionada coincide con la contraseña del
-   * usuario.
-   * 
-   * @param password La contraseña a comprobar.
-   * @return true si la contraseña coincide, false en caso contrario.
+   * Realiza un retiro de la billetera.
+   * Si el monto es mayor que cero y no supera el saldo actual, se resta del saldo y se muestra un mensaje de éxito.
+   * Si el monto no es válido o supera el saldo actual, se muestra un mensaje de error.
+   *
+   * @param amount el monto a retirar
    */
-  public boolean checkPassword(String password) {
-    return this.password.equals(password);
+  public void withdraw(double amount) {
+    if (amount > 0 && this.balance >= amount) {
+      this.balance -= amount;
+      System.out.println("Retiro realizado con éxito. Nuevo saldo: CLP " + String.format("%.2f", this.balance));
+    } else {
+      System.out.println("Saldo insuficiente para realizar el retiro o monto inválido.");
+    }
+  }
+
+  /**
+   * Obtiene el saldo actual de la billetera.
+   *
+   * @return el saldo actual de la billetera
+   */
+  public double getBalance() {
+    return this.balance;
+  }
+
+  /**
+   * Establece el saldo de la billetera a un nuevo valor.
+   *
+   * @param newBalance el nuevo saldo de la billetera
+   */
+  public void setBalance(double newBalance) {
+    this.balance = newBalance;
   }
 
 }
