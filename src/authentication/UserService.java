@@ -1,21 +1,26 @@
 package authentication;
 
+import models.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import user.User;
-
 /**
- * La clase UserService es responsable de administrar la autenticación y
- * creación de usuarios.
+ * La clase UserService implementa la interfaz IUserService y proporciona una
+ * implementación concreta
+ * de los métodos para autenticar a un usuario y crear un nuevo usuario.
+ *
+ * Esta clase mantiene una lista de usuarios para simular una base de datos de
+ * usuarios.
  */
-public class UserService {
-
-  private List<User> users;
+public class UserService implements IUserService {
+  // Lista de usuarios
+  private final List<User> users;
 
   /**
-   * Crea una instancia de UserService e inicializa la lista de usuarios con un
-   * usuario de ejemplo.
+   * Constructor de UserService.
+   * Inicializa la lista de usuarios y agrega un usuario predeterminado a la
+   * lista.
    */
   public UserService() {
     this.users = new ArrayList<>();
@@ -23,13 +28,14 @@ public class UserService {
   }
 
   /**
-   * Autentica a un usuario utilizando el correo electrónico y la contraseña
-   * proporcionados.
-   * 
+   * Autentica a un usuario.
+   * Este método toma un correo electrónico y una contraseña, y devuelve un objeto
+   * User si la autenticación es exitosa.
+   * Si la autenticación falla, este método devuelve null.
+   *
    * @param email    el correo electrónico del usuario
    * @param password la contraseña del usuario
-   * @return el objeto User correspondiente si la autenticación es exitosa, o null
-   *         si no se encuentra un usuario válido
+   * @return un objeto User si la autenticación es exitosa, null en caso contrario
    */
   @Override
   public User authenticateUser(String email, String password) {
@@ -40,14 +46,16 @@ public class UserService {
   }
 
   /**
-   * Crea un nuevo usuario con los datos proporcionados y lo agrega a la lista de
-   * usuarios.
-   * 
+   * Crea un nuevo usuario.
+   * Este método toma un nombre, un apellido, un correo electrónico y una
+   * contraseña, y devuelve un objeto User si la creación es exitosa.
+   * El nuevo usuario se agrega a la lista de usuarios.
+   *
    * @param firstName el nombre del usuario
    * @param lastName  el apellido del usuario
    * @param email     el correo electrónico del usuario
    * @param password  la contraseña del usuario
-   * @return el objeto User recién creado
+   * @return un objeto User si la creación es exitosa
    */
   @Override
   public User createNewUser(String firstName, String lastName, String email, String password) {
@@ -55,5 +63,4 @@ public class UserService {
     users.add(newUser);
     return newUser;
   }
-
 }
