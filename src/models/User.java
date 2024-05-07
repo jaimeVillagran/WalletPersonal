@@ -7,12 +7,31 @@ package models;
  */
 public class User {
 
+  // Nombre del usuario
   private String firstName;
+
+  // Apellido del usuario
   private String lastName;
+
+  // Correo electrónico del usuario
   private String email;
+
+  // Contraseña del usuario
   private String password;
+
+  // Billetera del usuario
   private Wallet wallet;
 
+  /**
+   * Constructor de User.
+   * Inicializa el nombre, apellido, correo electrónico y contraseña del usuario.
+   * También inicializa la billetera del usuario con un saldo de 0.
+   *
+   * @param firstName el nombre del usuario
+   * @param lastName  el apellido del usuario
+   * @param email     el correo electrónico del usuario
+   * @param password  la contraseña del usuario
+   */
   public User(String firstName, String lastName, String email, String password) {
     this.firstName = firstName;
     this.lastName = lastName;
