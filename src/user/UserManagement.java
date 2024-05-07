@@ -1,2 +1,5 @@
-package user;public interface UserManagement {
+package user;
+
+public interface UserManagement {
+    User createUser();
 }
