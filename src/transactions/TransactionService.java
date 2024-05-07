@@ -1,6 +1,3 @@
-/**
- * Esta clase proporciona servicios relacionados con las transacciones.
- */
 package transactions;
 
 import models.Wallet;
@@ -10,28 +7,43 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * La interfaz Transaction representa una transacción en una billetera personal.
- * 
- * Esta interfaz define los métodos necesarios para obtener el monto de la
- * transacción,
- * la descripción de la transacción y ejecutar la transacción.
+ * La clase TransactionService implementa la interfaz ITransactionService y
+ * proporciona una implementación concreta
+ * de los métodos para depositar, retirar, obtener el saldo actual, obtener el
+ * historial de transacciones y obtener el saldo actual en USD.
+ *
+ * Esta clase mantiene una referencia a la billetera del usuario y una lista del
+ * historial de transacciones.
  */
-public interface TransactionService {
-    private Wallet wallet;
-    private List<String> transactionHistory;
-    private DateTimeFormatter formatter = DateTimeFormatter
+public class TransactionService implements ITransactionService {
+    // Billetera del usuario
+    private final Wallet wallet;
+    // Historial de transacciones del usuario
+    private final List<String> transactionHistory;
+    // Formato de la fecha y hora para el registro de transacciones
+    private final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("'Fecha:' dd/MM/yyyy ' /Hora: ' HH:mm: ' / Transaccion'");
+    // Tasa de cambio para convertir el saldo a USD
     private static final double EXCHANGE_RATE = 0.00106;
 
+    /**
+     * Constructor de TransactionService.
+     * Inicializa la billetera del usuario y la lista del historial de
+     * transacciones.
+     *
+     * @param wallet la billetera del usuario
+     */
     public TransactionService(Wallet wallet) {
         this.wallet = wallet;
         this.transactionHistory = new ArrayList<>();
     }
 
     /**
-     * Realiza un depósito en la billetera personal.
-     * 
-     * @param amount la cantidad de dinero a depositar
+     * Realiza un depósito en la billetera del usuario.
+     * Este método toma un monto y lo suma al saldo actual del usuario.
+     * También registra la transacción en el historial de transacciones.
+     *
+     * @param amount el monto a depositar
      */
     @Override
     public void deposit(double amount) {
@@ -43,9 +55,12 @@ public interface TransactionService {
     }
 
     /**
-     * Realiza un retiro de dinero de la billetera.
-     * 
-     * @param amount la cantidad de dinero a retirar
+     * Realiza un retiro de la billetera del usuario.
+     * Este método toma un monto y lo resta del saldo actual del usuario si el saldo
+     * es suficiente.
+     * También registra la transacción en el historial de transacciones.
+     *
+     * @param amount el monto a retirar
      */
     @Override
     public void withdraw(double amount) {
@@ -57,29 +72,32 @@ public interface TransactionService {
     }
 
     /**
-        * Obtiene el saldo actual de la billetera.
-        *
-        * @return el saldo actual de la billetera
-        */
+     * Obtiene el saldo actual de la billetera del usuario.
+     *
+     * @return el saldo actual de la billetera del usuario
+     */
     @Override
     public double getCurrentBalance() {
         return wallet.getBalance();
     }
 
     /**
-     * Obtiene el historial de transacciones.
-     * 
-     * @return una lista de cadenas que representa el historial de transacciones
+     * Obtiene el historial de transacciones del usuario.
+     *
+     * @return una lista de cadenas que representa el historial de transacciones del
+     *         usuario
      */
     public List<String> getTransactionHistory() {
         return transactionHistory;
     }
 
     /**
-        * Calcula el saldo actual en dólares estadounidenses.
-        * 
-        * @return el saldo actual en dólares estadounidenses.
-        */
+     * Obtiene el saldo actual de la billetera del usuario en USD.
+     * Este método convierte el saldo actual a USD utilizando la tasa de cambio
+     * EXCHANGE_RATE.
+     *
+     * @return el saldo actual de la billetera del usuario en USD
+     */
     public double getCurrentBalanceInUSD() {
         return getCurrentBalance() * EXCHANGE_RATE;
     }
