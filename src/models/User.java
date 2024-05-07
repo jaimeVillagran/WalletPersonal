@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * La clase User representa a un usuario en el sistema.
+ * Contiene información como el nombre, apellido, correo electrónico, contraseña
+ * y billetera del usuario.
+ */
 public class User {
 
   private String firstName;
@@ -13,29 +18,61 @@ public class User {
     this.lastName = lastName;
     this.email = email;
     this.password = password;
-    this.wallet = new Wallet(0); // Asume que existe un constructor en Wallet.
+    this.wallet = new Wallet(0);
   }
 
+  /**
+   * Devuelve el nombre del usuario.
+   * 
+   * @return el nombre del usuario
+   */
   public String getFirstName() {
     return firstName;
   }
 
+  /**
+   * Obtiene el apellido del usuario.
+   * 
+   * @return el apellido del usuario
+   */
   public String getLastName() {
     return lastName;
   }
 
+  /**
+   * Devuelve el correo electrónico del usuario.
+   * 
+   * @return el correo electrónico del usuario
+   */
   public String getEmail() {
     return email;
   }
 
+  /**
+   * Devuelve la contraseña del usuario.
+   * 
+   * @return la contraseña del usuario.
+   */
   public String getPassword() {
     return password;
   }
 
+  /**
+   * Obtiene la billetera del usuario.
+   * 
+   * @return la billetera del usuario.
+   */
   public Wallet getWallet() {
     return wallet;
   }
 
+  /**
+   * Comprueba si la contraseña proporcionada coincide con la contraseña del
+   * usuario.
+   * 
+   * @param password La contraseña a comprobar.
+   * @return true si la contraseña coincide, false en caso contrario.
+   */
   public boolean checkPassword(String password) {
     return this.password.equals(password);
   }
