@@ -261,9 +261,9 @@ public class Menu {
             double amount = getUserInputAsDouble();
             if (amount > 0 && transactionService.getCurrentBalance() >= amount) {
                 transactionService.withdraw(amount);
-                out.printf("\u001B[32mRetiro realizado con éxito. Saldo restante: $%.2f\u001B[0m\n", transactionService.getCurrentBalance());
+                out.printf(ANSI_GREEN + "Retiro realizado con éxito. Saldo restante: $%.2f "+ ANSI_RESET + "\n", transactionService.getCurrentBalance());
             } else {
-                out.println("\u001B[31mFondos insuficientes o monto inválido.\u001B[0m");
+                out.println(ANSI_RED + "Fondos insuficientes o monto inválido." + ANSI_RESET );
             }
             displayMenu(); // Redisplay the menu
         }
