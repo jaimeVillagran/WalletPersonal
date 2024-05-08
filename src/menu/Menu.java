@@ -48,6 +48,15 @@ public class Menu {
      */
     public void initialMenu() {
         // Código para mostrar el menú inicial
+        out.println(ANSI_AZUL + "**********************************************" + ANSI_RESET);
+        out.println(ANSI_AZUL + "* Bienvenido a la billetera Wallet Personal *" + ANSI_RESET);
+        out.println(ANSI_AZUL + "**********************************************" + ANSI_RESET);
+        out.println(ANSI_AZUL + "Tienes una cuenta activa o deseas crear una?" + ANSI_RESET);
+        out.println(ANSI_AZUL + "* Opción 1 - Cuenta activa" + ANSI_RESET);
+        out.println(ANSI_AZUL + "* Opción 2 - Crear cuenta" + ANSI_RESET);
+        out.print(ANSI_AZUL + "Elija una opción (1/2): " + ANSI_RESET);
+        int choice = getUserInputAsInt();
+        processInitialOption(choice);
     }
 
     /**
@@ -59,6 +68,12 @@ public class Menu {
      */
     private int getUserInputAsInt() {
         // Código para obtener la entrada del usuario como un entero
+        try {
+            return Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+            out.println(ANSI_RED + "Por favor, ingrese un número válido." + ANSI_RESET);
+            return getUserInputAsInt(); // Recursively call until a valid number is entered
+        }
     }
 
     /**
@@ -72,6 +87,7 @@ public class Menu {
      */
     private void processInitialOption(int choice) {
         // Código para procesar la opción inicial
+
     }
 
     /**
@@ -157,6 +173,7 @@ public class Menu {
      */
     private void displayBalanceInUSD() {
         // Código para mostrar el saldo en USD
+        return;
     }
 
     /**
@@ -168,5 +185,6 @@ public class Menu {
      */
     private double getUserInputAsDouble() {
         // Código para obtener la entrada del usuario como un double
+        return 0;
     }
 }
