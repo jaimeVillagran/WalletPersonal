@@ -32,3 +32,31 @@ WalletPersonal/
 │
 ├─ README.md   # Este archivo
 ├─ .gitignore  # Configuración para Git
+```
+
+## Instalación y Uso
+Para comenzar a usar Wallet Personal, sigue estos pasos:
+
+##Clonación del Repositorio:
+bash
+Copy code
+git clone https://github.com/tu_usuario/WalletPersonal.git
+Configuración del Entorno:
+Abre el proyecto en IntelliJ IDEA Community Edition y configura el entorno Java.
+
+## Compilación y Ejecución:
+Compila y ejecuta el proyecto para iniciar la interfaz de usuario.
+
+## Uso:
+Explora las diferentes funcionalidades de la aplicación y realiza pruebas.
+
+## Contribuciones
+Las contribuciones son bienvenidas. Si encuentras algún error o deseas mejorar la aplicación, no dudes en abrir un issue o enviar un pull request.
+
+## Diagrama UML
+El diagrama UML del proyecto está disponible para proporcionar una vista visual de la estructura de clases y su interacción dentro de la aplicación, facilitando la comprensión y el análisis del diseño del sistema.
+
+css
+Copy code
+
+Este formato proporciona una visión clara y estructurada de tu proyecto, permitiendo a otros
