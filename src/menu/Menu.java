@@ -6,6 +6,7 @@ import transactions.ITransactionService;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -47,10 +48,9 @@ public class Menu {
      * Proporciona opciones para iniciar sesión o crear una cuenta.
      */
     public void initialMenu() {
-        // Código para mostrar el menú inicial
-        out.println(ANSI_AZUL + "**********************************************" + ANSI_RESET);
+        out.println(ANSI_AZUL + "______________________________________" + ANSI_RESET);
         out.println(ANSI_AZUL + "* Bienvenido a la billetera Wallet Personal *" + ANSI_RESET);
-        out.println(ANSI_AZUL + "**********************************************" + ANSI_RESET);
+        out.println(ANSI_AZUL + "______________________________________" + ANSI_RESET);
         out.println(ANSI_AZUL + "Tienes una cuenta activa o deseas crear una?" + ANSI_RESET);
         out.println(ANSI_AZUL + "* Opción 1 - Cuenta activa" + ANSI_RESET);
         out.println(ANSI_AZUL + "* Opción 2 - Crear cuenta" + ANSI_RESET);
@@ -67,7 +67,6 @@ public class Menu {
      * @return la entrada del usuario como un entero
      */
     private int getUserInputAsInt() {
-        // Código para obtener la entrada del usuario como un entero
         try {
             return Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
@@ -86,8 +85,14 @@ public class Menu {
      * @param choice la opción seleccionada por el usuario
      */
     private void processInitialOption(int choice) {
-        // Código para procesar la opción inicial
-
+        if (choice == 1) {
+            handleLogin();
+        } else if (choice == 2) {
+            handleCreateAccount();
+        } else {
+            out.println(ANSI_RED + "Opción inválida, intente de nuevo." + ANSI_RESET);
+            initialMenu();  // Recursive call to handle incorrect options
+        }
     }
 
     /**
@@ -98,7 +103,28 @@ public class Menu {
      * tres veces antes de salir del sistema.
      */
     private void handleLogin() {
-        // Código para manejar el inicio de sesión
+        int attempts = 0;
+        while (attempts < 3) {
+            out.print("Email: ");
+            String email = sc.nextLine();
+            out.print("Contraseña: ");
+            String password = sc.nextLine();
+            User user = userService.authenticateUser(email, password);
+            if (user != null) {
+                out.println(ANSI_GREEN + "Autenticación exitosa." + ANSI_RESET);
+                displayWelcomeAndMenu(user);
+                return;
+            } else {
+                out.println(ANSI_RED + "_____________________________________________" + ANSI_RESET);
+                out.println(ANSI_RED + " |  Autenticación fallida. Verifique sus credenciales.  |" + ANSI_RESET);
+                out.println(ANSI_RED + "_____________________________________________" + ANSI_RESET);
+                attempts++;
+            }
+        }
+        out.println(ANSI_RED + "____________________________________" + ANSI_RESET);
+        out.println(ANSI_RED + "Autenticación fallida. Inténtelo más tarde...." + ANSI_RESET);
+        out.println(ANSI_RED + "____________________________________" + ANSI_RESET);
+        System.exit(0);
     }
 
     /**
@@ -110,7 +136,31 @@ public class Menu {
      * cuenta nuevamente.
      */
     private void handleCreateAccount() {
-        // Código para manejar la creación de una cuenta
+        out.print("Nombre: ");
+        String firstName = sc.nextLine();
+        out.print("Apellido: ");
+        String lastName = sc.nextLine();
+        out.print("Email: ");
+        String email = sc.nextLine();
+        out.print("Contraseña: ");
+        String password = sc.nextLine();
+
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            out.println(ANSI_RED + "____________________________________" + ANSI_RESET);
+            out.println(ANSI_RED + " |  Los campos no pueden estar vacíos  |" + ANSI_RESET);
+            out.println(ANSI_RED + "____________________________________" + ANSI_RESET);
+            handleCreateAccount();
+            return;
+        }
+
+        User user = userService.createNewUser(firstName, lastName, email, password);
+        if (user != null) {
+            out.println(ANSI_GREEN + "  Cuenta creada exitosamente  " + ANSI_RESET);
+            displayWelcomeAndMenu(user);
+        } else {
+            out.println(ANSI_RED + " No se pudo crear la cuenta. Intente nuevamente. " + ANSI_RESET);
+            handleCreateAccount();
+        }
     }
 
     /**
@@ -119,8 +169,13 @@ public class Menu {
      * @param user el usuario que ha iniciado sesión o creado una cuenta
      */
     private void displayWelcomeAndMenu(User user) {
-        // Código para mostrar el menú de bienvenida y el menú de opciones
+        out.println(ANSI_AZUL + "_________________________________" + ANSI_RESET);
+        out.println(ANSI_AZUL + "            Wallet Personal         " + ANSI_RESET);
+        out.println(ANSI_AZUL + user.getFirstName() + " " + user.getLastName() + "    " + ANSI_RESET);
+        out.println(ANSI_AZUL + "_________________________________" + ANSI_RESET);
+        displayMenu();
     }
+
 
     /**
      * Muestra el menú de opciones.
@@ -128,8 +183,14 @@ public class Menu {
      * transacciones y consultar el saldo en USD.
      */
     private void displayMenu() {
-        // Código para mostrar el menú de opciones
+        out.println(ANSI_AZUL + "1. Depositar" + ANSI_RESET);
+        out.println(ANSI_AZUL + "2. Retirar" + ANSI_RESET);
+        out.println(ANSI_AZUL + "3. Historial de transacciones" + ANSI_RESET);
+        out.println(ANSI_AZUL + "4. Saldo en USD" + ANSI_RESET);
+        out.println(ANSI_AZUL + "5. Salir" + ANSI_RESET);
+        handleUserChoice();
     }
+
 
     /**
      * Maneja la opción seleccionada por el usuario en el menú de opciones.
@@ -137,7 +198,34 @@ public class Menu {
      * seleccione una opción válida.
      */
     private void handleUserChoice() {
-        // Código para manejar la opción seleccionada por el usuario
+        boolean exit = false;
+        while (!exit) {
+            out.print("Seleccione una opción: ");
+            int choice = getUserInputAsInt();
+            switch (choice) {
+                case 1:
+                    handleDeposit();
+                    break;
+                case 2:
+                    handleWithdraw();
+                    break;
+                case 3:
+                    displayTransactionHistory();
+                    break;
+                case 4:
+                    displayBalanceInUSD();
+                    break;
+                case 5:
+                    out.println(ANSI_AZUL + "_____________________" + ANSI_RESET);
+                    out.println(ANSI_AZUL + "Saliendo del sistema..." + ANSI_RESET);
+                    sc.close();
+                    return;  // Salir correctamente
+                default:
+                    out.println(ANSI_RED + "__________________________________" + ANSI_RESET);
+                    out.println(ANSI_RED + "Opción inválida. Intente nuevamente. " + ANSI_RESET);
+                    out.println(ANSI_RED + "__________________________________" + ANSI_RESET);
+            }
+        }
     }
 
     /**
@@ -147,7 +235,17 @@ public class Menu {
      * Si el monto no es válido, solicita al usuario que ingrese un monto válido.
      */
     private void handleDeposit() {
-        // Código para manejar el depósito
+        out.println(ANSI_AZUL + " Ingrese el monto a depositar: " + ANSI_RESET);
+        double amount = getUserInputAsDouble();
+        if (amount > 0) {
+            transactionService.deposit(amount);
+            out.println(ANSI_AZUL + "__________________________________________" + ANSI_RESET);
+            out.printf(" * Depósito realizado con éxito. Nuevo saldo: $ %.2f\n", transactionService.getCurrentBalance());
+            out.println(ANSI_AZUL + "__________________________________________" + ANSI_RESET);
+        } else {
+            out.println(ANSI_RED + "El monto a depositar debe ser mayor que cero." + ANSI_RESET);
+        }
+        displayMenu();
     }
 
     /**
@@ -158,22 +256,39 @@ public class Menu {
      * Si el monto no es válido o el saldo no es suficiente, informa al usuario.
      */
     private void handleWithdraw() {
-        // Código para manejar el retiro
-    }
+            out.println(ANSI_AZUL + "________________________" + ANSI_RESET);
+            out.println(ANSI_AZUL + " Ingrese el monto a retirar: " + ANSI_RESET);
+            double amount = getUserInputAsDouble();
+            if (amount > 0 && transactionService.getCurrentBalance() >= amount) {
+                transactionService.withdraw(amount);
+                out.printf("\u001B[32mRetiro realizado con éxito. Saldo restante: $%.2f\u001B[0m\n", transactionService.getCurrentBalance());
+            } else {
+                out.println("\u001B[31mFondos insuficientes o monto inválido.\u001B[0m");
+            }
+            displayMenu(); // Redisplay the menu
+        }
 
     /**
      * Muestra el historial de transacciones del usuario.
      */
     private void displayTransactionHistory() {
-        // Código para mostrar el historial de transacciones
+        List<String> history = transactionService.getTransactionHistory();
+        out.println(ANSI_AZUL + "____________________________________" + ANSI_RESET);
+        out.println(ANSI_AZUL + "------- Historial de Transacciones--------" + ANSI_RESET);
+        for (String transaction : history) {
+            out.println(transaction);
+        }
     }
 
     /**
      * Muestra el saldo del usuario en USD.
      */
     private void displayBalanceInUSD() {
-        // Código para mostrar el saldo en USD
-        return;
+        double balanceInUSD = transactionService.getCurrentBalanceInUSD();
+        out.println(ANSI_AZUL + "__________________________________" + ANSI_RESET);
+        out.printf("Su saldo actual es USD $%.2f\n", balanceInUSD);
+        out.println(ANSI_AZUL + "__________________________________" + ANSI_RESET);
+        displayMenu();
     }
 
     /**
@@ -184,7 +299,12 @@ public class Menu {
      * @return la entrada del usuario como un double
      */
     private double getUserInputAsDouble() {
-        // Código para obtener la entrada del usuario como un double
-        return 0;
+        while (true) {
+            try {
+                return Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                out.println(ANSI_RED + "Por favor, ingrese un número válido." + ANSI_RESET);
+            }
+        }
     }
 }
