@@ -18,7 +18,7 @@ El proyecto utiliza las siguientes tecnologías:
 - **JUnit:** Para escribir y ejecutar pruebas unitarias, asegurando que cada componente funcione correctamente antes de su implementación.
 - **IntelliJ IDEA Community Edition:** IDE utilizado para el desarrollo del proyecto, proporcionando herramientas poderosas para la edición y debugging de código.
 - **Git:** Para el control de versiones, facilitando el desarrollo colaborativo y organizado.
-- **Excalidraw:** Utilizado para la creación de diagramas y esquemas del proyecto.
+- **PlantUML:** Utilizado para la creación de diagramas y esquemas del proyecto.
 
 ## Estructura del Proyecto
 El proyecto está estructurado de la siguiente manera para facilitar su desarrollo y mantenimiento:
@@ -55,8 +55,4 @@ Las contribuciones son bienvenidas. Si encuentras algún error o deseas mejorar 
 
 ## Diagrama UML
 El diagrama UML del proyecto está disponible para proporcionar una vista visual de la estructura de clases y su interacción dentro de la aplicación, facilitando la comprensión y el análisis del diseño del sistema.
-
-css
-Copy code
-
-Este formato proporciona una visión clara y estructurada de tu proyecto, permitiendo a otros
+![image](https://github.com/jaimeVillagran/WalletPersonal/assets/87080231/995b9f0d-f098-4aee-9d07-f8fc90343e43)
